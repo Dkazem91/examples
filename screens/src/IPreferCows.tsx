@@ -22,7 +22,12 @@ export class IPreferCows {
     return (
       <div>
         IPreferCows component
-        <ul>{this.cows.map(cow => <li>{cow}</li>)}</ul>
+        <apizi-navigator>
+          <apizi-navigator-auth-screen />
+          <apizi-navigator-screen>
+            <ul>{this.cows.map(cow => <li>{cow}</li>)}</ul>
+          </apizi-navigator-screen>
+        </apizi-navigator>
       </div>
     )
   }
