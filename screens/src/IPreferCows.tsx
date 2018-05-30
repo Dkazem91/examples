@@ -1,6 +1,6 @@
-import { Component } from '@stencil/core'
+import { Component, State } from '@stencil/core'
 import '@apizi/ui'
-import { BearerComponent, Intent, BearerFetch, State } from '@apizi/core'
+import { BearerComponent, Intent, BearerFetch } from '@apizi/core'
 
 @BearerComponent
 @Component({
