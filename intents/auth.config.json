@@ -1,0 +1,7 @@
+{
+  "authorizationURL": "https://api.twitter.com/oauth/authorize",
+  "tokenURL": "https://api.twitter.com/oauth/request_token",
+  "config": {
+    "scope": []
+  }
+}
