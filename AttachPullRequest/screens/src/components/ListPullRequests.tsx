@@ -14,7 +14,12 @@ export class ListPullRequests {
   @Prop() context: any
 
   renderFunc = item => {
-    return <span>{item.title}</span>
+    return (
+      <span style={{ display: 'flex', alignItems: 'center' }}>
+        <pull-request-icon />
+        {item.title}
+      </span>
+    )
   }
 
   getPullRequests() {
@@ -24,6 +29,7 @@ export class ListPullRequests {
   render() {
     return (
       <div class="root">
+        <apizi-typography kind="h6">Pull Requests</apizi-typography>
         <apizi-scrollable
           fetcher={this.getPullRequests.bind(this)}
           renderCollection={collection => (

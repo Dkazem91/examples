@@ -12,7 +12,7 @@ export interface Ref {
 
 export interface PR {
   id: string
-  url: string
+  html_url: string
   title: string
   number: number
   state: 'open' | 'closed' | 'merged'

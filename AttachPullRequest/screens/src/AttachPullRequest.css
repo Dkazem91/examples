@@ -6,18 +6,6 @@
   border-radius: 6px;
 }
 
-.root.open svg path {
-  fill: #6cc644;
-}
-
-.root.closed svg path {
-  fill: #bd2c00;
-}
-
-.root.merged svg path {
-  fill: #6e5494;
-}
-
 .content {
   flex: 1;
   padding: 0 4px;

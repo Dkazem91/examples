@@ -296,6 +296,39 @@ declare global {
   }
 }
 
+
+declare global {
+
+  namespace StencilComponents {
+    interface PullRequestIcon {
+      'state': '' | 'open' | 'closed' | 'merged';
+    }
+  }
+
+  interface HTMLPullRequestIconElement extends StencilComponents.PullRequestIcon, HTMLStencilElement {}
+
+  var HTMLPullRequestIconElement: {
+    prototype: HTMLPullRequestIconElement;
+    new (): HTMLPullRequestIconElement;
+  };
+  interface HTMLElementTagNameMap {
+    'pull-request-icon': HTMLPullRequestIconElement;
+  }
+  interface ElementTagNameMap {
+    'pull-request-icon': HTMLPullRequestIconElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'pull-request-icon': JSXElements.PullRequestIconAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface PullRequestIconAttributes extends HTMLAttributes {
+      'state'?: '' | 'open' | 'closed' | 'merged';
+    }
+  }
+}
+
 declare global { namespace JSX { interface StencilJSX {} } }
 
 export declare function defineCustomElements(window: any): void;
