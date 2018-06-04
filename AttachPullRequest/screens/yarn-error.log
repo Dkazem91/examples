@@ -21,11 +21,12 @@ npm manifest:
     "main": "dist/attach-pull-request.js",
     "types": "dist/types/components.d.ts",
     "collection": "dist/collection/collection-manifest.json",
-    "files": ["dist/"],
+    "files": [
+      "dist/"
+    ],
     "scripts": {
       "build": "stencil build",
-      "dev":
-        "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
+      "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
       "serve": "stencil-dev-server",
       "start": "npm run dev",
       "test": "jest --no-cache",
@@ -33,7 +34,7 @@ npm manifest:
     },
     "dependencies": {
       "@apizi/core": "latest",
-      "@apizi/ui": "latest"
+      "@apizi/ui": "^0.7.6"
     },
     "devDependencies": {
       "@stencil/core": "latest",
@@ -45,11 +46,16 @@ npm manifest:
     "license": "MIT",
     "jest": {
       "transform": {
-        "^.+\\.(ts|tsx)$":
-          "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
+        "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
       },
       "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
-      "moduleFileExtensions": ["ts", "tsx", "js", "json", "jsx"]
+      "moduleFileExtensions": [
+        "ts",
+        "tsx",
+        "js",
+        "json",
+        "jsx"
+      ]
     }
   }
 
@@ -72,9 +78,9 @@ Lockfile:
       rollup-plugin-replace "^2.0.0"
       typescript "^2.8.3"
   
-  "@apizi/ui@latest":
-    version "0.7.5"
-    resolved "https://registry.yarnpkg.com/@apizi/ui/-/ui-0.7.5.tgz#666ade5645f9ff717d17928248dc9ccf1736b0d4"
+  "@apizi/ui@^0.7.6":
+    version "0.7.6"
+    resolved "https://registry.yarnpkg.com/@apizi/ui/-/ui-0.7.6.tgz#dfc6fe4be63e2e52f74f223b35ff1a38e0b7d625"
     dependencies:
       "@apizi/core" "^0.7.2"
       "@stencil/sass" "^0.0.5"

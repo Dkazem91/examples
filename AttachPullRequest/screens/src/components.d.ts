@@ -33,7 +33,7 @@ declare global {
 
   namespace StencilComponents {
     interface AttachPullRequest {
-
+      'bearerDisplayId': string;
     }
   }
 
@@ -56,7 +56,7 @@ declare global {
   }
   namespace JSXElements {
     export interface AttachPullRequestAttributes extends HTMLAttributes {
-
+      'bearerDisplayId'?: string;
     }
   }
 }
@@ -66,7 +66,7 @@ declare global {
 
   namespace StencilComponents {
     interface AttachPullRequestDisplay {
-
+      'bearerId': string;
     }
   }
 
@@ -89,7 +89,7 @@ declare global {
   }
   namespace JSXElements {
     export interface AttachPullRequestDisplayAttributes extends HTMLAttributes {
-
+      'bearerId'?: string;
     }
   }
 }
@@ -156,6 +156,105 @@ declare global {
   namespace JSXElements {
     export interface HelloWorldAttributes extends HTMLAttributes {
 
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface ListPullRequests {
+
+    }
+  }
+
+  interface HTMLListPullRequestsElement extends StencilComponents.ListPullRequests, HTMLStencilElement {}
+
+  var HTMLListPullRequestsElement: {
+    prototype: HTMLListPullRequestsElement;
+    new (): HTMLListPullRequestsElement;
+  };
+  interface HTMLElementTagNameMap {
+    'list-pull-requests': HTMLListPullRequestsElement;
+  }
+  interface ElementTagNameMap {
+    'list-pull-requests': HTMLListPullRequestsElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'list-pull-requests': JSXElements.ListPullRequestsAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ListPullRequestsAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface ListRepositories {
+
+    }
+  }
+
+  interface HTMLListRepositoriesElement extends StencilComponents.ListRepositories, HTMLStencilElement {}
+
+  var HTMLListRepositoriesElement: {
+    prototype: HTMLListRepositoriesElement;
+    new (): HTMLListRepositoriesElement;
+  };
+  interface HTMLElementTagNameMap {
+    'list-repositories': HTMLListRepositoriesElement;
+  }
+  interface ElementTagNameMap {
+    'list-repositories': HTMLListRepositoriesElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'list-repositories': JSXElements.ListRepositoriesAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ListRepositoriesAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface PinPullRequest {
+      'context': any;
+    }
+  }
+
+  interface HTMLPinPullRequestElement extends StencilComponents.PinPullRequest, HTMLStencilElement {}
+
+  var HTMLPinPullRequestElement: {
+    prototype: HTMLPinPullRequestElement;
+    new (): HTMLPinPullRequestElement;
+  };
+  interface HTMLElementTagNameMap {
+    'pin-pull-request': HTMLPinPullRequestElement;
+  }
+  interface ElementTagNameMap {
+    'pin-pull-request': HTMLPinPullRequestElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'pin-pull-request': JSXElements.PinPullRequestAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface PinPullRequestAttributes extends HTMLAttributes {
+      'context'?: any;
     }
   }
 }

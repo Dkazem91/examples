@@ -3,24 +3,37 @@
 
 */
 
-import { Component } from '@stencil/core'
-import '@apizi/ui'
+import { Component, Prop } from "@stencil/core";
+import "@apizi/ui";
 
 @Component({
-  tag: 'attach-pull-request',
-  styleUrl: 'AttachPullRequest.css',
+  tag: "attach-pull-request",
+  styleUrl: "AttachPullRequest.css",
   shadow: true
 })
 export class AttachPullRequestAction {
+  @Prop() bearerDisplayId = "";
   render() {
     return (
       <apizi-popover-navigator button="Attach Pull Request" direction="right">
         <apizi-navigator-auth-screen />
-        <apizi-navigator-screen renderFunc={() => <hello-world />} />
-        <apizi-navigator-screen>
-          🎉🎉 Last scenario screen 🎉🎉
-        </apizi-navigator-screen>
+        <apizi-navigator-screen
+          name="list-repositories"
+          renderFunc={() => <list-repositories />}
+        />
+        <apizi-navigator-screen
+          name="list-pull-requests"
+          renderFunc={() => <list-pull-requests />}
+        />
+        <apizi-navigator-screen
+          name="pin-pull-request"
+          renderFunc={context => (
+            <pin-pull-request
+              context={{ ...context, bearerDisplayId: this.bearerDisplayId }}
+            />
+          )}
+        />
       </apizi-popover-navigator>
-    )
+    );
   }
 }
