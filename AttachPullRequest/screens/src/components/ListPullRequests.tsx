@@ -1,25 +1,25 @@
-import { Component, Prop } from "@stencil/core";
+import { Component, Prop } from '@stencil/core'
 
-import { BearerComponent, Intent, BearerFetch } from "@apizi/core";
+import { BearerComponent, Intent, BearerFetch } from '@apizi/core'
 
 @BearerComponent
 @Component({
-  tag: "list-pull-requests",
-  styleUrl: "ListPullRequests.css",
+  tag: 'list-pull-requests',
+  styleUrl: 'ListPullRequests.css',
   shadow: true
 })
 export class ListPullRequests {
-  @Intent("listPullRequests") fetcher: BearerFetch;
+  @Intent('listPullRequests') fetcher: BearerFetch
 
-  @Prop() context: any;
+  @Prop() context: any
 
   renderFunc = item => {
-    return <span>{item.title}</span>;
-  };
+    return <span>{item.title}</span>
+  }
 
   getPullRequests() {
-    const fullName = this.context.data["list-repositories"].full_name;
-    return this.fetcher({ fullName });
+    const fullName = this.context.data['repository'].full_name
+    return this.fetcher({ fullName })
   }
   render() {
     return (
@@ -34,6 +34,6 @@ export class ListPullRequests {
           )}
         />
       </div>
-    );
+    )
   }
 }

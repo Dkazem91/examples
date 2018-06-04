@@ -131,6 +131,43 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface BearerFinalScreen {
+      'getTitle': () => void;
+      'perform': (any) => Promise<any>;
+      'willAppear': (context: any) => void;
+      'willDisappear': () => void;
+    }
+  }
+
+  interface HTMLBearerFinalScreenElement extends StencilComponents.BearerFinalScreen, HTMLStencilElement {}
+
+  var HTMLBearerFinalScreenElement: {
+    prototype: HTMLBearerFinalScreenElement;
+    new (): HTMLBearerFinalScreenElement;
+  };
+  interface HTMLElementTagNameMap {
+    'bearer-final-screen': HTMLBearerFinalScreenElement;
+  }
+  interface ElementTagNameMap {
+    'bearer-final-screen': HTMLBearerFinalScreenElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'bearer-final-screen': JSXElements.BearerFinalScreenAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface BearerFinalScreenAttributes extends HTMLAttributes {
+      'onScenarioCompleted'?: (event: CustomEvent) => void;
+      'perform'?: (any) => Promise<any>;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface HelloWorld {
 
     }
@@ -222,6 +259,39 @@ declare global {
   namespace JSXElements {
     export interface ListRepositoriesAttributes extends HTMLAttributes {
 
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface PinPullRequest {
+      'context': any;
+    }
+  }
+
+  interface HTMLPinPullRequestElement extends StencilComponents.PinPullRequest, HTMLStencilElement {}
+
+  var HTMLPinPullRequestElement: {
+    prototype: HTMLPinPullRequestElement;
+    new (): HTMLPinPullRequestElement;
+  };
+  interface HTMLElementTagNameMap {
+    'pin-pull-request': HTMLPinPullRequestElement;
+  }
+  interface ElementTagNameMap {
+    'pin-pull-request': HTMLPinPullRequestElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'pin-pull-request': JSXElements.PinPullRequestAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface PinPullRequestAttributes extends HTMLAttributes {
+      'context'?: any;
     }
   }
 }

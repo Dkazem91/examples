@@ -13,9 +13,9 @@
     rollup-plugin-replace "^2.0.0"
     typescript "^2.8.3"
 
-"@apizi/ui@^0.7.6":
-  version "0.7.7"
-  resolved "https://registry.yarnpkg.com/@apizi/ui/-/ui-0.7.7.tgz#b6bac52d73c0738ee258f4d920d77d5f428fcffc"
+"@apizi/ui@^0.7.11":
+  version "0.7.11"
+  resolved "https://registry.yarnpkg.com/@apizi/ui/-/ui-0.7.11.tgz#9296f330299d715707505a423183ae93e0682707"
   dependencies:
     "@apizi/core" "^0.7.2"
     "@stencil/sass" "^0.0.5"
