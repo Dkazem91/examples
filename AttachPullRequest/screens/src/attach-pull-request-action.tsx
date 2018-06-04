@@ -3,27 +3,24 @@
 
 */
 
-import { Component } from "@stencil/core";
-import "@apizi/ui";
+import { Component } from '@stencil/core'
+import '@apizi/ui'
 
 @Component({
-  tag: "attach-pull-request",
-  styleUrl: "AttachPullRequest.css",
+  tag: 'attach-pull-request',
+  styleUrl: 'AttachPullRequest.css',
   shadow: true
 })
 export class AttachPullRequestAction {
   render() {
     return (
-      <div>
-        <apizi-popover-navigator>
-          <span slot="buttonText">Attach Pull Request</span>
-          <apizi-navigator-auth-screen />
-          <apizi-navigator-screen renderFunc={() => <hello-world />} />
-          <apizi-navigator-screen>
-            🎉🎉 Last scenario screen 🎉🎉
-          </apizi-navigator-screen>
-        </apizi-popover-navigator>
-      </div>
-    );
+      <apizi-popover-navigator button="Attach Pull Request" direction="right">
+        <apizi-navigator-auth-screen />
+        <apizi-navigator-screen renderFunc={() => <hello-world />} />
+        <apizi-navigator-screen>
+          🎉🎉 Last scenario screen 🎉🎉
+        </apizi-navigator-screen>
+      </apizi-popover-navigator>
+    )
   }
 }
