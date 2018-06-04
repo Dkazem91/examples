@@ -31,10 +31,12 @@ export class AttachPullRequestAction {
       <apizi-popover-navigator button="Attach Pull Request" direction="right">
         <apizi-navigator-auth-screen />
         <apizi-navigator-screen
+          navigationTitle="Repositories"
           name="repository"
           renderFunc={() => <list-repositories />}
         />
         <apizi-navigator-screen
+          navigationTitle="Pull resquests"
           name="pullRequest"
           renderFunc={context => <list-pull-requests context={context} />}
         />

@@ -16,7 +16,10 @@ export class ListPullRequests {
   renderFunc = item => {
     return (
       <span style={{ display: 'flex', alignItems: 'center' }}>
-        <pull-request-icon />
+        <span style={{ marginRight: '4px', position: 'relative' }}>
+          <pull-request-icon />
+        </span>
+
         {item.title}
       </span>
     )
@@ -28,18 +31,15 @@ export class ListPullRequests {
   }
   render() {
     return (
-      <div class="root">
-        <apizi-typography kind="h6">Pull Requests</apizi-typography>
-        <apizi-scrollable
-          fetcher={this.getPullRequests.bind(this)}
-          renderCollection={collection => (
-            <apizi-navigator-collection
-              data={collection}
-              renderFunc={this.renderFunc}
-            />
-          )}
-        />
-      </div>
+      <apizi-scrollable
+        fetcher={this.getPullRequests.bind(this)}
+        renderCollection={collection => (
+          <apizi-navigator-collection
+            data={collection}
+            renderFunc={this.renderFunc}
+          />
+        )}
+      />
     )
   }
 }

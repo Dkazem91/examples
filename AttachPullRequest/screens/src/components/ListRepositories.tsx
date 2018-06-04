@@ -13,8 +13,9 @@ export class ListRepositories {
 
   renderFunc = item => {
     return (
-      <span style={{ display: 'flex', alignItems: 'center' }}>
+      <span style={styles.item}>
         <svg
+          style={styles.svg}
           width="1rem"
           height="1rem"
           class="octicon octicon-repo"
@@ -34,18 +35,21 @@ export class ListRepositories {
 
   render() {
     return (
-      <div class="root">
-        <apizi-typography kind="h6">Repositories</apizi-typography>
-        <apizi-scrollable
-          fetcher={this.fetcher}
-          renderCollection={collection => (
-            <apizi-navigator-collection
-              data={collection}
-              renderFunc={this.renderFunc}
-            />
-          )}
-        />
-      </div>
+      <apizi-paginator
+        fetcher={this.fetcher}
+        perPage={10}
+        renderCollection={collection => (
+          <apizi-navigator-collection
+            data={collection}
+            renderFunc={this.renderFunc}
+          />
+        )}
+      />
     )
   }
+}
+
+const styles = {
+  svg: { marginRight: '4px', position: 'relative', top: '1px' },
+  item: { display: 'flex', alignItems: 'center' }
 }

@@ -1,5 +1,5 @@
 .root {
-  background: #edeff0;
+  border: 1px solid #ccc;
   padding: 10px;
   display: flex;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
