@@ -43,14 +43,3 @@ export class AttachPullRequestAction {
     )
   }
 }
-
-{
-  /* <apizi-navigator-screen
-  name="pin-pull-request"
-  renderFunc={context => (
-    <pin-pull-request
-      context={{ ...context, bearerDisplayId: this.bearerDisplayId }}
-    />
-  )}
-/> */
-}
