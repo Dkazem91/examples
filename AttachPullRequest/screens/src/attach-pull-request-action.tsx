@@ -23,7 +23,7 @@ export class AttachPullRequestAction {
         />
         <apizi-navigator-screen
           name="list-pull-requests"
-          renderFunc={() => <list-pull-requests />}
+          renderFunc={context => <list-pull-requests context={context} />}
         />
         <apizi-navigator-screen
           name="pin-pull-request"

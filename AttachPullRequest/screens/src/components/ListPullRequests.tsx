@@ -1,4 +1,4 @@
-import { Component } from "@stencil/core";
+import { Component, Prop } from "@stencil/core";
 
 import { BearerComponent, Intent, BearerFetch } from "@apizi/core";
 
@@ -11,15 +11,21 @@ import { BearerComponent, Intent, BearerFetch } from "@apizi/core";
 export class ListPullRequests {
   @Intent("listPullRequests") fetcher: BearerFetch;
 
+  @Prop() context: any;
+
   renderFunc = item => {
-    return <span>{item.name}</span>;
+    return <span>{item.title}</span>;
   };
+
+  getPullRequests() {
+    const fullName = this.context.data["list-repositories"].full_name;
+    return this.fetcher({ fullName });
+  }
   render() {
     return (
       <div class="root">
-        <h1>Hello from your first scenario</h1>
         <apizi-scrollable
-          fetcher={this.fetcher}
+          fetcher={this.getPullRequests.bind(this)}
           renderCollection={collection => (
             <apizi-navigator-collection
               data={collection}

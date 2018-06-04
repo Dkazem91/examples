@@ -5,7 +5,7 @@
 */
 import { Component, Prop, State } from "@stencil/core";
 
-import Bearer, { BearerState } from "@apizi/core";
+import Bearer, { BearerState, Intent, BearerFetch } from "@apizi/core";
 import "@apizi/ui";
 
 @Component({
@@ -15,25 +15,33 @@ import "@apizi/ui";
 })
 export class AttachPullRequestDisplay {
   @Prop() bearerId = "";
-  @State() pullRequests: Array<{ id: string; name: string }> = [];
+  @State()
+  prs: {
+    pullRequests: Array<{ id: string; name: string }>;
+    pullRequestsDisplay: Array<any>;
+  } = { pullRequests: [], pullRequestsDisplay: [] };
+  @Intent("getPullRequest") fetcher: BearerFetch;
 
-  componentDidLoad() {
+  async componentDidLoad() {
     const referenceId = `BEARER_SCENARIO_ID:${this.bearerId}`;
 
-    BearerState.getData(referenceId).then(
-      function(data) {
-        console.log(data);
-        this.pullRequests = data.Item.pullRequests || [];
-      }.bind(this)
-    );
+    try {
+      const { Item } = await BearerState.getData(referenceId);
+      this.prs.pullRequests = Item.pullRequests || [];
+      // const displayData = await this.fetcher({ fullName: [] });
+      this.prs.pullRequestsDisplay = null;
+    } catch (e) {
+      console.log(e);
+      this.prs = { pullRequests: [], pullRequestsDisplay: [] };
+    }
 
     Bearer.emitter.addListener(
       referenceId,
       function(data) {
-        this.pullRequests = [...this.pullRequests, data.whatILike];
+        this.prs.pullRequests = [...this.prs.pullRequests, data.pullRequest];
 
         BearerState.storeData(referenceId, {
-          pullRequests: this.pullRequests
+          pullRequests: this.prs.pullRequests
         }).then(console.log);
       }.bind(this)
     );
@@ -42,19 +50,19 @@ export class AttachPullRequestDisplay {
   handleRemoveClick(event) {
     const referenceId = `BEARER_SCENARIO_ID:${this.bearerId}`;
     const { objectId } = event.target.dataset;
-    this.pullRequests = this.pullRequests.filter(({ id }) => {
+    this.prs.pullRequests = this.prs.pullRequests.filter(({ id }) => {
       return id != objectId;
     });
 
     BearerState.storeData(referenceId, {
-      pullRequests: this.pullRequests
+      pullRequests: this.prs.pullRequests
     }).then(console.log);
   }
 
   render() {
     return (
       <ul>
-        {this.pullRequests.map(({ id, name }) => {
+        {this.prs.pullRequestsDisplay.map(({ id, name }) => {
           return (
             <div>
               <li>{name} </li>

@@ -1,4 +1,4 @@
-const { GetCollection } = require("@apizi/intents");
+const { GetObject } = require("@apizi/intents");
 
 const axios = require("axios");
 
@@ -17,18 +17,18 @@ function headersFor(token) {
   };
 }
 
-module.exports.action = (token, params, callback) =>
-  CLIENT.get("user/repos", {
+module.exports.action = (token, { fullName, id, ...params }, callback) => {
+  CLIENT.get(`/repos/${fullName}/pulls/${id}`, {
     params,
     headers: headersFor(token)
   })
     .then(response => {
-      callback({ collection: response.data });
+      callback({ object: response.data });
     })
     .catch(e => {
       console.log(e);
-      callback({ collection: [] });
+      callback({ object: null });
     });
-
-module.exports.intentType = GetCollection;
-module.exports.intentName = "listRepositories";
+};
+module.exports.intentType = GetObject;
+module.exports.intentName = "getPullRequest";

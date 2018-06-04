@@ -14,6 +14,7 @@ export class ListRepositories {
   renderFunc = item => {
     return <span>{item.name}</span>;
   };
+
   render() {
     return (
       <div class="root">

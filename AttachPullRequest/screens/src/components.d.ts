@@ -165,7 +165,7 @@ declare global {
 
   namespace StencilComponents {
     interface ListPullRequests {
-
+      'context': any;
     }
   }
 
@@ -188,7 +188,7 @@ declare global {
   }
   namespace JSXElements {
     export interface ListPullRequestsAttributes extends HTMLAttributes {
-
+      'context'?: any;
     }
   }
 }
@@ -222,39 +222,6 @@ declare global {
   namespace JSXElements {
     export interface ListRepositoriesAttributes extends HTMLAttributes {
 
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface PinPullRequest {
-      'context': any;
-    }
-  }
-
-  interface HTMLPinPullRequestElement extends StencilComponents.PinPullRequest, HTMLStencilElement {}
-
-  var HTMLPinPullRequestElement: {
-    prototype: HTMLPinPullRequestElement;
-    new (): HTMLPinPullRequestElement;
-  };
-  interface HTMLElementTagNameMap {
-    'pin-pull-request': HTMLPinPullRequestElement;
-  }
-  interface ElementTagNameMap {
-    'pin-pull-request': HTMLPinPullRequestElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'pin-pull-request': JSXElements.PinPullRequestAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface PinPullRequestAttributes extends HTMLAttributes {
-      'context'?: any;
     }
   }
 }
