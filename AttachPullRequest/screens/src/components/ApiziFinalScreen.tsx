@@ -10,9 +10,11 @@ export class BearerFinalScreen {
 
   @Method()
   willAppear(context) {
-    this.perform(context).then(() => {
-      this.scenarioCompleted.emit(context)
-    })
+    this.perform(context)
+      .then(() => {
+        this.scenarioCompleted.emit(context)
+      })
+      .catch(console.log)
   }
 
   @Method()

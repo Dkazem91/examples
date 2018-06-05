@@ -13,6 +13,20 @@ export class ListPullRequests {
 
   @Prop() context: any
 
+  renderCollection = collection => {
+    const display = document.querySelector('attach-pull-request-display')
+    const filtered = collection.map(
+      item =>
+        !display.isDisplayed(item) ? item : { ...item, _isDisabled: true }
+    )
+    return (
+      <apizi-navigator-collection
+        data={filtered}
+        renderFunc={this.renderFunc}
+      />
+    )
+  }
+
   renderFunc = item => {
     return (
       <span style={{ display: 'flex', alignItems: 'center' }}>
@@ -25,20 +39,20 @@ export class ListPullRequests {
     )
   }
 
-  getPullRequests() {
+  get displayComponent() {
+    return
+  }
+
+  getPullRequests = () => {
     const fullName = this.context.data['repository'].full_name
     return this.fetcher({ fullName })
   }
+
   render() {
     return (
       <apizi-scrollable
-        fetcher={this.getPullRequests.bind(this)}
-        renderCollection={collection => (
-          <apizi-navigator-collection
-            data={collection}
-            renderFunc={this.renderFunc}
-          />
-        )}
+        fetcher={this.getPullRequests}
+        renderCollection={this.renderCollection.bind(this)}
       />
     )
   }
