@@ -35,7 +35,7 @@ export class ListRepositories {
 
   render() {
     return (
-      <apizi-paginator
+      <apizi-scrollable
         fetcher={this.fetcher}
         perPage={10}
         renderCollection={collection => (

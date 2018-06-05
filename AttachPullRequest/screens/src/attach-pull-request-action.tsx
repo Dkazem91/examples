@@ -18,12 +18,11 @@ export class AttachPullRequestAction {
   @Prop() bearerDisplayId = ''
 
   intent = ({ pullRequest }) =>
-    new Promise((reject, resolve) => {
+    new Promise((resolve, _reject) => {
       Bearer.emitter.emit(`BEARER_SCENARIO_ID:add:${this.bearerDisplayId}`, {
         pullRequest
       })
-      resolve()
-      console.log(reject)
+      resolve(true)
     })
 
   render() {
