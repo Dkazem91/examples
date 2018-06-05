@@ -1,10 +1,11 @@
+/* global document */
 /*
   The purpose of this component is to deal with scenario navigation between each screens.
 
 */
 
 import { Component, Prop } from '@stencil/core'
-import Bearer, { BearerState } from '@apizi/core'
+import Bearer from '@apizi/core'
 
 import '@apizi/ui'
 
@@ -16,15 +17,14 @@ import '@apizi/ui'
 export class AttachPullRequestAction {
   @Prop() bearerDisplayId = ''
 
-  intent = ({ pullRequest, repository }) =>
-    BearerState.storeData(`BEARER_SCENARIO_ID:${this.bearerDisplayId}`, {
-      number: pullRequest.number,
-      fullName: repository.full_name
-    }).then(() =>
+  intent = ({ pullRequest }) =>
+    new Promise((reject, resolve) => {
       Bearer.emitter.emit(`BEARER_SCENARIO_ID:add:${this.bearerDisplayId}`, {
         pullRequest
       })
-    )
+      resolve()
+      console.log(reject)
+    })
 
   render() {
     return (
@@ -36,7 +36,7 @@ export class AttachPullRequestAction {
           renderFunc={() => <list-repositories />}
         />
         <apizi-navigator-screen
-          navigationTitle="Pull resquests"
+          navigationTitle="Pull requests"
           name="pullRequest"
           renderFunc={context => <list-pull-requests context={context} />}
         />

@@ -1,26 +1,26 @@
-import { Component, Prop, Method, Event, EventEmitter } from '@stencil/core'
+import { Component, Prop, Method, Event, EventEmitter } from "@stencil/core";
 
 @Component({
-  tag: 'bearer-final-screen',
+  tag: "bearer-final-screen",
   shadow: true
 })
 export class BearerFinalScreen {
-  @Event() scenarioCompleted: EventEmitter
-  @Prop() perform: (any) => Promise<any>
+  @Event() scenarioCompleted: EventEmitter;
+  @Prop() perform: (any) => Promise<any>;
 
   @Method()
   willAppear(context) {
     this.perform(context).then(() => {
-      this.scenarioCompleted.emit(context)
-    })
+      this.scenarioCompleted.emit(context);
+    });
   }
 
   @Method()
-  willDisappear() {}
+  willDisappear() { }
 
   @Method()
-  getTitle() {}
+  getTitle() { }
   render() {
-    return null
+    return null;
   }
 }

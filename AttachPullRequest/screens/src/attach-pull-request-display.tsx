@@ -3,7 +3,7 @@
   Its responsibility is to retrieve the scenario state from a previous action
   of a user.
 */
-import { Component, Prop, State } from '@stencil/core'
+import { Component, Prop, State, Method } from '@stencil/core'
 
 import Bearer, {
   BearerState,
@@ -23,63 +23,91 @@ import { PR } from './types.d'
 })
 export class AttachPullRequestDisplay {
   @Prop() bearerId = ''
-  @State() pullRequest: PR
+  @State() pullRequests: Array<PR> = []
 
   @Intent('getPullRequest', IntentType.GetResource)
   fetcher: BearerFetch
 
   getPullRequest = ({ fullName, number }) => {
-    this.fetcher({ fullName, id: number }).then(({ object: pullRequest }) => {
-      if (pullRequest && pullRequest.id) {
-        this.pullRequest = pullRequest
+    this.fetcher({ fullName, id: number })
+      .then(({ object: pullRequest }) => {
+        this.pullRequests = [
+          ...this.pullRequests,
+          { ...pullRequest, full_name: fullName }
+        ]
+      })
+      .catch(e => console.log(e))
+  }
+
+  get adaptedPullRequests() {
+    return this.pullRequests.map(
+      ({ number, base: { repo: { full_name } } }) => {
+        return { number, full_name }
       }
-    })
+    )
+  }
+
+  @Method()
+  isDisplayed({ number, base: { repo: { full_name } } }) {
+    return this.adaptedPullRequests.find(
+      ({ full_name: fn, number: n }) => fn === full_name && n === number
+    )
   }
 
   componentDidLoad() {
+    const referenceId = `BEARER_SCENARIO_ID:${this.bearerId}`
     Bearer.emitter.addListener(
       `BEARER_SCENARIO_ID:add:${this.bearerId}`,
       ({ pullRequest }) => {
-        this.pullRequest = pullRequest
+        this.pullRequests = [...this.pullRequests, pullRequest]
+
+        BearerState.storeData(`BEARER_SCENARIO_ID:${this.bearerId}`, {
+          pullRequests: this.adaptedPullRequests
+        })
       }
     )
 
     Bearer.emitter.addListener(
       `BEARER_SCENARIO_ID:remove:${this.bearerId}`,
-      () => {
-        this.pullRequest = null
+      ({ full_name, number }) => {
+        this.pullRequests = this.pullRequests.filter(
+          ({ base: { repo: { full_name: fn } }, number: n }) =>
+            fn != full_name || n != number
+        )
+
+        BearerState.storeData(referenceId, {
+          pullRequests: this.adaptedPullRequests
+        })
       }
     )
 
-    const referenceId = `BEARER_SCENARIO_ID:${this.bearerId}`
     BearerState.getData(referenceId).then(({ Item }) => {
-      if (Item) {
-        this.getPullRequest({ fullName: Item.fullName, number: Item.number })
+      if (Item.pullRequests && Item.pullRequests.length > 0) {
+        Item.pullRequests.forEach(item => {
+          this.getPullRequest({
+            fullName: item.full_name,
+            number: item.number
+          })
+        })
       }
     })
   }
 
-  handleRemoveClick = () => {
+  handleRemoveClick = (full_name, number) => () => {
+    console.log('Bearer ID:', this.bearerId)
     const referenceId = `BEARER_SCENARIO_ID:remove:${this.bearerId}`
-    Bearer.emitter.emit(referenceId)
-    BearerState.removeData(`BEARER_SCENARIO_ID:${this.bearerId}`).then(
-      console.log
-    )
+    Bearer.emitter.emit(referenceId, { full_name, number })
   }
 
-  render() {
-    if (!this.pullRequest) {
-      return 'No PR attached yet'
-    }
-    const {
-      html_url,
-      title,
-      number,
-      state,
-      base,
-      head,
-      user
-    } = this.pullRequest
+  renderPullRequest = ({
+    html_url,
+    title,
+    number,
+    state,
+    base,
+    head,
+    user
+  }) => {
     return (
       <div class={`root ${state}`}>
         <pull-request-icon state={state} />
@@ -100,7 +128,7 @@ export class AttachPullRequestDisplay {
         <div>
           <apizi-button
             kind="danger"
-            onClick={this.handleRemoveClick}
+            onClick={this.handleRemoveClick(base.repo.full_name, number)}
             size="sm"
           >
             X
@@ -108,5 +136,11 @@ export class AttachPullRequestDisplay {
         </div>
       </div>
     )
+  }
+  render() {
+    if (this.pullRequests.length === 0) {
+      return 'No PR attached yet'
+    }
+    return this.pullRequests.map(this.renderPullRequest)
   }
 }
