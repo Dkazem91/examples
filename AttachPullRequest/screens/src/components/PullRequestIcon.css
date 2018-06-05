@@ -17,3 +17,7 @@ svg.closed path {
 svg.merged path {
   fill: #6e5494;
 }
+
+:host-context(.disabled) svg path {
+  fill: #6c757d;
+}

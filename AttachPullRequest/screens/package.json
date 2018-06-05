@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@apizi/core": "latest",
-    "@apizi/ui": "^0.7.20"
+    "@apizi/ui": "^0.7.21"
   },
   "devDependencies": {
     "@stencil/core": "latest",

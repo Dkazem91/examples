@@ -32,8 +32,8 @@ export class AttachPullRequestDisplay {
     this.fetcher({ fullName, id: number })
       .then(({ object: pullRequest }) => {
         this.pullRequests = [
-          { ...pullRequest, full_name: fullName },
-          ...this.pullRequests
+          ...this.pullRequests,
+          { ...pullRequest, full_name: fullName }
         ]
       })
       .catch(e => console.log(e))

@@ -15,7 +15,10 @@ export class ListPullRequests {
 
   renderCollection = collection => {
     const display = document.querySelector('attach-pull-request-display')
-    const filtered = collection.filter(item => !display.isDisplayed(item))
+    const filtered = collection.map(
+      item =>
+        !display.isDisplayed(item) ? item : { ...item, _isDisabled: true }
+    )
     return (
       <apizi-navigator-collection
         data={filtered}
