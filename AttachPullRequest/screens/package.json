@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@apizi/core": "latest",
+
     "@apizi/ui": "^0.7.21"
   },
   "devDependencies": {
