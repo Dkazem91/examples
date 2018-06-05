@@ -1,39 +1,45 @@
-import { Component, Prop } from "@stencil/core";
+import { Component, Prop } from '@stencil/core'
 
-import { BearerComponent, Intent, BearerFetch } from "@apizi/core";
+import { BearerComponent, Intent, BearerFetch } from '@apizi/core'
 
 @BearerComponent
 @Component({
-  tag: "list-pull-requests",
-  styleUrl: "ListPullRequests.css",
+  tag: 'list-pull-requests',
+  styleUrl: 'ListPullRequests.css',
   shadow: true
 })
 export class ListPullRequests {
-  @Intent("listPullRequests") fetcher: BearerFetch;
+  @Intent('listPullRequests') fetcher: BearerFetch
 
-  @Prop() context: any;
+  @Prop() context: any
 
   renderFunc = item => {
-    return <span>{item.title}</span>;
-  };
+    return (
+      <span style={{ display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '4px', position: 'relative' }}>
+          <pull-request-icon />
+        </span>
+
+        {item.title}
+      </span>
+    )
+  }
 
   getPullRequests() {
-    const fullName = this.context.data["list-repositories"].full_name;
-    return this.fetcher({ fullName });
+    const fullName = this.context.data['repository'].full_name
+    return this.fetcher({ fullName })
   }
   render() {
     return (
-      <div class="root">
-        <apizi-scrollable
-          fetcher={this.getPullRequests.bind(this)}
-          renderCollection={collection => (
-            <apizi-navigator-collection
-              data={collection}
-              renderFunc={this.renderFunc}
-            />
-          )}
-        />
-      </div>
-    );
+      <apizi-scrollable
+        fetcher={this.getPullRequests.bind(this)}
+        renderCollection={collection => (
+          <apizi-navigator-collection
+            data={collection}
+            renderFunc={this.renderFunc}
+          />
+        )}
+      />
+    )
   }
 }

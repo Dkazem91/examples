@@ -3,79 +3,110 @@
   Its responsibility is to retrieve the scenario state from a previous action
   of a user.
 */
-import { Component, Prop, State } from "@stencil/core";
+import { Component, Prop, State } from '@stencil/core'
 
-import Bearer, { BearerState, Intent, BearerFetch } from "@apizi/core";
-import "@apizi/ui";
+import Bearer, {
+  BearerState,
+  Intent,
+  IntentType,
+  BearerFetch,
+  BearerComponent
+} from '@apizi/core'
+import '@apizi/ui'
+import { PR } from './types.d'
 
+@BearerComponent
 @Component({
-  tag: "attach-pull-request-display",
-  styleUrl: "AttachPullRequest.css",
+  tag: 'attach-pull-request-display',
+  styleUrl: 'AttachPullRequest.css',
   shadow: true
 })
 export class AttachPullRequestDisplay {
-  @Prop() bearerId = "";
-  @State()
-  prs: {
-    pullRequests: Array<{ id: string; name: string }>;
-    pullRequestsDisplay: Array<any>;
-  } = { pullRequests: [], pullRequestsDisplay: [] };
-  @Intent("getPullRequest") fetcher: BearerFetch;
+  @Prop() bearerId = ''
+  @State() pullRequest: PR
 
-  async componentDidLoad() {
-    const referenceId = `BEARER_SCENARIO_ID:${this.bearerId}`;
+  @Intent('getPullRequest', IntentType.GetResource)
+  fetcher: BearerFetch
 
-    try {
-      const { Item } = await BearerState.getData(referenceId);
-      this.prs.pullRequests = Item.pullRequests || [];
-      // const displayData = await this.fetcher({ fullName: [] });
-      this.prs.pullRequestsDisplay = null;
-    } catch (e) {
-      console.log(e);
-      this.prs = { pullRequests: [], pullRequestsDisplay: [] };
-    }
-
-    Bearer.emitter.addListener(
-      referenceId,
-      function(data) {
-        this.prs.pullRequests = [...this.prs.pullRequests, data.pullRequest];
-
-        BearerState.storeData(referenceId, {
-          pullRequests: this.prs.pullRequests
-        }).then(console.log);
-      }.bind(this)
-    );
+  getPullRequest = ({ fullName, number }) => {
+    this.fetcher({ fullName, id: number }).then(({ object: pullRequest }) => {
+      if (pullRequest && pullRequest.id) {
+        this.pullRequest = pullRequest
+      }
+    })
   }
 
-  handleRemoveClick(event) {
-    const referenceId = `BEARER_SCENARIO_ID:${this.bearerId}`;
-    const { objectId } = event.target.dataset;
-    this.prs.pullRequests = this.prs.pullRequests.filter(({ id }) => {
-      return id != objectId;
-    });
+  componentDidLoad() {
+    Bearer.emitter.addListener(
+      `BEARER_SCENARIO_ID:add:${this.bearerId}`,
+      ({ pullRequest }) => {
+        this.pullRequest = pullRequest
+      }
+    )
 
-    BearerState.storeData(referenceId, {
-      pullRequests: this.prs.pullRequests
-    }).then(console.log);
+    Bearer.emitter.addListener(
+      `BEARER_SCENARIO_ID:remove:${this.bearerId}`,
+      () => {
+        this.pullRequest = null
+      }
+    )
+
+    const referenceId = `BEARER_SCENARIO_ID:${this.bearerId}`
+    BearerState.getData(referenceId).then(({ Item }) => {
+      if (Item) {
+        this.getPullRequest({ fullName: Item.fullName, number: Item.number })
+      }
+    })
+  }
+
+  handleRemoveClick = () => {
+    const referenceId = `BEARER_SCENARIO_ID:remove:${this.bearerId}`
+    Bearer.emitter.emit(referenceId)
+    BearerState.removeData(`BEARER_SCENARIO_ID:${this.bearerId}`).then(
+      console.log
+    )
   }
 
   render() {
+    if (!this.pullRequest) {
+      return 'No PR attached yet'
+    }
+    const {
+      html_url,
+      title,
+      number,
+      state,
+      base,
+      head,
+      user
+    } = this.pullRequest
     return (
-      <ul>
-        {this.prs.pullRequestsDisplay.map(({ id, name }) => {
-          return (
-            <div>
-              <li>{name} </li>
-              <span
-                data-object-id={id}
-                onClick={this.handleRemoveClick.bind(this)}
-              >
-                ✗
-              </span>
-            </div>
-          );
-        })}
-      </ul>
-    );
+      <div class={`root ${state}`}>
+        <pull-request-icon state={state} />
+        <a class="content" href={html_url} target="_blank">
+          <div class="title">{title}</div>
+          <div>
+            <span>{base.repo.full_name}</span>{' '}
+            <span class="number">#{number}</span>{' '}
+            <apizi-typography as="span">
+              opened by {user.login}
+            </apizi-typography>
+          </div>
+          <div>
+            merge <span class="branch">{head.ref}</span> into{' '}
+            <span class="branch">{base.ref}</span>
+          </div>
+        </a>
+        <div>
+          <apizi-button
+            kind="danger"
+            onClick={this.handleRemoveClick}
+            size="sm"
+          >
+            X
+          </apizi-button>
+        </div>
+      </div>
+    )
   }
 }
