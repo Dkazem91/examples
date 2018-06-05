@@ -109,7 +109,7 @@ export class AttachPullRequestDisplay {
     user
   }) => {
     return (
-      <div class={`root ${state}`}>
+      <div class={`pull-request ${state}`}>
         <pull-request-icon state={state} />
         <a class="content" href={html_url} target="_blank">
           <div class="title">{title}</div>

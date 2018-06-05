@@ -19,7 +19,7 @@
   "dependencies": {
     "@apizi/core": "latest",
 
-    "@apizi/ui": "^0.7.21"
+    "@apizi/ui": "^0.7.22"
   },
   "devDependencies": {
     "@stencil/core": "latest",

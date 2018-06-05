@@ -203,7 +203,7 @@ declare global {
 
   namespace StencilComponents {
     interface ListPullRequests {
-      'context': any;
+      'repository': any;
     }
   }
 
@@ -226,7 +226,7 @@ declare global {
   }
   namespace JSXElements {
     export interface ListPullRequestsAttributes extends HTMLAttributes {
-      'context'?: any;
+      'repository'?: any;
     }
   }
 }

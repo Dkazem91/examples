@@ -1,6 +1,7 @@
 import { Component, Prop } from '@stencil/core'
 
 import { BearerComponent, Intent, BearerFetch } from '@apizi/core'
+// import { Repository } from '../types.d'
 
 @BearerComponent
 @Component({
@@ -10,8 +11,7 @@ import { BearerComponent, Intent, BearerFetch } from '@apizi/core'
 })
 export class ListPullRequests {
   @Intent('listPullRequests') fetcher: BearerFetch
-
-  @Prop() context: any
+  @Prop() repository: any
 
   renderCollection = collection => {
     const display = document.querySelector('attach-pull-request-display')
@@ -44,7 +44,7 @@ export class ListPullRequests {
   }
 
   getPullRequests = () => {
-    const fullName = this.context.data['repository'].full_name
+    const fullName = this.repository.full_name
     return this.fetcher({ fullName })
   }
 

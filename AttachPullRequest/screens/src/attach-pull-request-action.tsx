@@ -35,9 +35,11 @@ export class AttachPullRequestAction {
           renderFunc={() => <list-repositories />}
         />
         <apizi-navigator-screen
-          navigationTitle="Pull requests"
+          navigationTitle={({ repository: { full_name } }) => full_name}
           name="pullRequest"
-          renderFunc={context => <list-pull-requests context={context} />}
+          renderFunc={({ data: { repository } }) => (
+            <list-pull-requests repository={repository} />
+          )}
         />
         <bearer-final-screen perform={this.intent} />
       </apizi-popover-navigator>

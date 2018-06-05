@@ -1,9 +1,13 @@
-.root {
+.pull-request {
   border: 1px solid #ccc;
   padding: 10px;
   display: flex;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
   border-radius: 6px;
+}
+
+.pull-request + .pull-request {
+  margin-top: 10px;
 }
 
 .content {
