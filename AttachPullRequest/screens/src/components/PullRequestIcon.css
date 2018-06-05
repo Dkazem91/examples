@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+}
+
+svg path {
+  fill: #333;
+}
+
+svg.open path {
+  fill: #6cc644;
+}
+
+svg.closed path {
+  fill: #bd2c00;
+}
+
+svg.merged path {
+  fill: #6e5494;
+}
