@@ -81,22 +81,24 @@ export class AttachPullRequestDisplay {
       }
     )
 
-    BearerState.getData(referenceId).then(({ Item }) => {
-      if (Item.pullRequests && Item.pullRequests.length > 0) {
-        Promise.all(
-          Item.pullRequests.map(item =>
-            this.getPullRequest({
-              fullName: item.full_name,
-              number: item.number
-            })
-          )
-        ).then(() => {
+    BearerState.getData(referenceId)
+      .then(({ Item }: { Item: any }) => {
+        if (Item.pullRequests && Item.pullRequests.length > 0) {
+          Promise.all(
+            Item.pullRequests.map(item =>
+              this.getPullRequest({
+                fullName: item.full_name,
+                number: item.number
+              })
+            )
+          ).then(() => {
+            this.loading = false
+          })
+        } else {
           this.loading = false
-        })
-      } else {
-        this.loading = false
-      }
-    })
+        }
+      })
+      .catch(e => console.error('error', e))
   }
 
   handleRemoveClick = (full_name, number) => () => {

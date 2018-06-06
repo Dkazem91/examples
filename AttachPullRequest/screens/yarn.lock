@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@apizi/core@0.7.26", "@apizi/core@^0.7.26":
-  version "0.7.26"
-  resolved "https://registry.yarnpkg.com/@apizi/core/-/core-0.7.26.tgz#b60f45ba95ceef06c57dd7fe25e4a8eb0e6c0271"
+"@apizi/core@0.7.31", "@apizi/core@^0.7.31":
+  version "0.7.31"
+  resolved "https://registry.yarnpkg.com/@apizi/core/-/core-0.7.31.tgz#55554036f30fff767466f7895cdf2b2e164116a7"
   dependencies:
     babel-plugin-inline-dotenv "^1.1.2"
     fbemitter "^2.1.1"
@@ -13,11 +13,11 @@
     rollup-plugin-replace "^2.0.0"
     typescript "^2.8.3"
 
-"@apizi/ui@^0.7.27":
-  version "0.7.27"
-  resolved "https://registry.yarnpkg.com/@apizi/ui/-/ui-0.7.27.tgz#af0d979ce265a2273dcf6bf82142ed176e3483cb"
+"@apizi/ui@^0.7.31":
+  version "0.7.31"
+  resolved "https://registry.yarnpkg.com/@apizi/ui/-/ui-0.7.31.tgz#189d4ac40ea6821aaa8b9d5b80af0b0952ad8296"
   dependencies:
-    "@apizi/core" "^0.7.26"
+    "@apizi/core" "^0.7.31"
     "@stencil/sass" "^0.0.5"
     bootstrap "^4.1.0"
 
