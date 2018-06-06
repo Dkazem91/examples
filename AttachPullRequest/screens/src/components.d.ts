@@ -99,6 +99,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AttachPullRequestSetupDisplay {
+
+    }
+  }
+
+  interface HTMLAttachPullRequestSetupDisplayElement extends StencilComponents.AttachPullRequestSetupDisplay, HTMLStencilElement {}
+
+  var HTMLAttachPullRequestSetupDisplayElement: {
+    prototype: HTMLAttachPullRequestSetupDisplayElement;
+    new (): HTMLAttachPullRequestSetupDisplayElement;
+  };
+  interface HTMLElementTagNameMap {
+    'attach-pull-request-setup-display': HTMLAttachPullRequestSetupDisplayElement;
+  }
+  interface ElementTagNameMap {
+    'attach-pull-request-setup-display': HTMLAttachPullRequestSetupDisplayElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'attach-pull-request-setup-display': JSXElements.AttachPullRequestSetupDisplayAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AttachPullRequestSetupDisplayAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AttachPullRequestSetup {
 
     }
