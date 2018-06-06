@@ -11,9 +11,10 @@ import "@apizi/ui";
 })
 export class AttachPullRequestSetup {
   render() {
+    const innerListener = `BEARER_SCENARIO_ID:setup_success:BEARER_SCENARIO_ID`
     return (
       <div>
-        <apizi-dropdown-button>
+        <apizi-dropdown-button innerListener={innerListener}>
           <span slot="buttonText">Setup component</span>
           <apizi-setup scenario-id="BEARER_SCENARIO_ID" />
         </apizi-dropdown-button>
