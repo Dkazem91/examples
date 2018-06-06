@@ -11,8 +11,8 @@ export class PullRequestIcon {
     return (
       <svg
         class={this.state}
-        width="1rem"
-        height="1rem"
+        width="1em"
+        height="1em"
         viewBox="0 0 12 16"
         version="1.1"
         aria-hidden="true"
