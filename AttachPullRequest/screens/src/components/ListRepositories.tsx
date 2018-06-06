@@ -16,8 +16,8 @@ export class ListRepositories {
       <span style={styles.item}>
         <svg
           style={styles.svg}
-          width="1rem"
-          height="1rem"
+          width="1em"
+          height="1em"
           class="octicon octicon-repo"
           viewBox="0 0 12 16"
           version="1.1"
