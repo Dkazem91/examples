@@ -22,13 +22,14 @@ import { PR } from './types.d'
   shadow: true
 })
 export class AttachPullRequestDisplay {
+  @State() loading = true
   @Prop() bearerId = ''
   @State() pullRequests: Array<PR> = []
 
   @Intent('getPullRequest', IntentType.GetResource)
   fetcher: BearerFetch
 
-  getPullRequest = ({ fullName, number }) => {
+  getPullRequest = ({ fullName, number }) =>
     this.fetcher({ fullName, id: number })
       .then(({ object: pullRequest }) => {
         this.pullRequests = [
@@ -37,7 +38,6 @@ export class AttachPullRequestDisplay {
         ]
       })
       .catch(e => console.log(e))
-  }
 
   get adaptedPullRequests() {
     return this.pullRequests.map(
@@ -83,12 +83,18 @@ export class AttachPullRequestDisplay {
 
     BearerState.getData(referenceId).then(({ Item }) => {
       if (Item.pullRequests && Item.pullRequests.length > 0) {
-        Item.pullRequests.forEach(item => {
-          this.getPullRequest({
-            fullName: item.full_name,
-            number: item.number
-          })
+        Promise.all(
+          Item.pullRequests.map(item =>
+            this.getPullRequest({
+              fullName: item.full_name,
+              number: item.number
+            })
+          )
+        ).then(() => {
+          this.loading = false
         })
+      } else {
+        this.loading = false
       }
     })
   }
@@ -138,6 +144,9 @@ export class AttachPullRequestDisplay {
     )
   }
   render() {
+    if (this.loading) {
+      return <apizi-loading />
+    }
     if (this.pullRequests.length === 0) {
       return 'No PR attached yet'
     }
