@@ -11,6 +11,13 @@ import "@apizi/ui";
 })
 export class AttachPullRequestSetup {
   render() {
-    return <apizi-setup scenario-id="BEARER_SCENARIO_ID" />;
+    return (
+      <div>
+        <apizi-dropdown-button>
+          <span slot="buttonText">Setup component</span>
+          <apizi-setup scenario-id="BEARER_SCENARIO_ID" />
+        </apizi-dropdown-button>
+      </div>
+    )
   }
 }
