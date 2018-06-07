@@ -98,7 +98,10 @@ export class AttachPullRequestDisplay {
           this.loading = false
         }
       })
-      .catch(e => console.error('error', e))
+      .catch(e => {
+        console.error('error', e)
+        this.loading = false
+      })
   }
 
   handleRemoveClick = (full_name, number) => () => {
