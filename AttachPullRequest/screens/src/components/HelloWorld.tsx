@@ -1,6 +1,6 @@
 import { Component } from '@stencil/core'
 
-import { BearerComponent, Intent, BearerFetch } from '@apizi/core'
+import { BearerComponent, Intent, BearerFetch } from '@bearer/core'
 
 @BearerComponent
 @Component({
@@ -15,11 +15,11 @@ export class HelloWorld {
     return (
       <div class="root">
         <h1>Hello from your first scenario</h1>
-        <apizi-paginator
+        <bearer-paginator
           fetcher={this.fetcher}
           perPage={10}
           renderCollection={ collection => (
-            <apizi-navigator-collection
+            <bearer-navigator-collection
               data={collection}
               renderFunc={item => item}
             />

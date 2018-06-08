@@ -1,4 +1,4 @@
-const { plugins } = require('@apizi/core/dist/plugins')
+const { plugins } = require('@bearer/core/dist/plugins')
 
 exports.config = {
   namespace: 'attach-pull-request',

@@ -17,8 +17,8 @@
     "test.watch": "jest --watch --no-cache"
   },
   "dependencies": {
-    "@apizi/core": "0.7.31",
-    "@apizi/ui": "^0.7.33"
+    "@bearer/core": "latest",
+    "@bearer/ui": "latest"
   },
   "devDependencies": {
     "@stencil/core": "latest",

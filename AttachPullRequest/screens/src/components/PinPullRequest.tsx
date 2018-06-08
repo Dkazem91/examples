@@ -1,6 +1,6 @@
 import { Component, Prop, State } from "@stencil/core";
 
-import Bearer, { BearerComponent } from "@apizi/core";
+import Bearer, { BearerComponent } from "@bearer/core";
 
 @BearerComponent
 @Component({

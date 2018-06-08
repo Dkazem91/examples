@@ -1,4 +1,4 @@
-const { GetCollection } = require('@apizi/intents')
+const { GetCollection } = require('@bearer/intents')
 
 const axios = require('axios')
 

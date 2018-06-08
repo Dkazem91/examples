@@ -5,9 +5,9 @@
 */
 
 import { Component, Prop } from '@stencil/core'
-import Bearer from '@apizi/core'
+import Bearer from '@bearer/core'
 
-import '@apizi/ui'
+import '@bearer/ui'
 
 @Component({
   tag: 'attach-pull-request',
@@ -27,14 +27,14 @@ export class AttachPullRequestAction {
 
   render() {
     return (
-      <apizi-popover-navigator button="Attach Pull Request" direction="right">
-        <apizi-navigator-auth-screen />
-        <apizi-navigator-screen
+      <bearer-popover-navigator button="Attach Pull Request" direction="right">
+        <bearer-navigator-auth-screen />
+        <bearer-navigator-screen
           navigationTitle="Repositories"
           name="repository"
           renderFunc={() => <list-repositories />}
         />
-        <apizi-navigator-screen
+        <bearer-navigator-screen
           navigationTitle={({ repository: { full_name } }) => full_name}
           name="pullRequest"
           renderFunc={({ data: { repository } }) => (
@@ -42,7 +42,7 @@ export class AttachPullRequestAction {
           )}
         />
         <bearer-final-screen perform={this.intent} />
-      </apizi-popover-navigator>
+      </bearer-popover-navigator>
     )
   }
 }

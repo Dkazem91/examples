@@ -1,6 +1,6 @@
 import { Component, Prop } from '@stencil/core'
 
-import { BearerComponent, Intent, BearerFetch } from '@apizi/core'
+import { BearerComponent, Intent, BearerFetch } from '@bearer/core'
 // import { Repository } from '../types.d'
 
 @BearerComponent
@@ -20,7 +20,7 @@ export class ListPullRequests {
         !display.isDisplayed(item) ? item : { ...item, _isDisabled: true }
     )
     return (
-      <apizi-navigator-collection
+      <bearer-navigator-collection
         data={filtered}
         renderFunc={this.renderFunc}
       />
@@ -50,7 +50,7 @@ export class ListPullRequests {
 
   render() {
     return (
-      <apizi-scrollable
+      <bearer-scrollable
         fetcher={this.getPullRequests}
         renderCollection={this.renderCollection.bind(this)}
       />

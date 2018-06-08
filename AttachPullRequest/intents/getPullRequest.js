@@ -1,4 +1,4 @@
-const { GetObject } = require("@apizi/intents");
+const { GetObject } = require("@bearer/intents");
 
 const axios = require("axios");
 

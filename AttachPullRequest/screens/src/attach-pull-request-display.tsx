@@ -11,8 +11,8 @@ import Bearer, {
   IntentType,
   BearerFetch,
   BearerComponent
-} from '@apizi/core'
-import '@apizi/ui'
+} from '@bearer/core'
+import '@bearer/ui'
 import { PR } from './types.d'
 
 @BearerComponent
@@ -127,9 +127,9 @@ export class AttachPullRequestDisplay {
           <div>
             <span>{base.repo.full_name}</span>{' '}
             <span class="number">#{number}</span>{' '}
-            <apizi-typography as="span">
+            <bearer-typography as="span">
               opened by {user.login}
-            </apizi-typography>
+            </bearer-typography>
           </div>
           <div>
             merge <span class="branch">{head.ref}</span> into{' '}
@@ -137,20 +137,20 @@ export class AttachPullRequestDisplay {
           </div>
         </a>
         <div>
-          <apizi-button
+          <bearer-button
             kind="danger"
             onClick={this.handleRemoveClick(base.repo.full_name, number)}
             size="sm"
           >
             X
-          </apizi-button>
+          </bearer-button>
         </div>
       </div>
     )
   }
   render() {
     if (this.loading) {
-      return <apizi-loading />
+      return <bearer-loading />
     }
     if (this.pullRequests.length === 0) {
       return 'No PR attached yet'

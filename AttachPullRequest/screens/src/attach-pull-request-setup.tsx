@@ -3,7 +3,7 @@
 */
 
 import { Component } from '@stencil/core'
-import '@apizi/ui'
+import '@bearer/ui'
 
 @Component({
   tag: 'attach-pull-request-setup',
@@ -14,10 +14,10 @@ export class AttachPullRequestSetup {
     const innerListener = `setup_success:BEARER_SCENARIO_ID`
     return (
       <div>
-        <apizi-dropdown-button innerListener={innerListener}>
+        <bearer-dropdown-button innerListener={innerListener}>
           <span slot="buttonText">Setup component</span>
-          <apizi-setup scenario-id="BEARER_SCENARIO_ID" />
-        </apizi-dropdown-button>
+          <bearer-setup scenario-id="BEARER_SCENARIO_ID" />
+        </bearer-dropdown-button>
       </div>
     )
   }

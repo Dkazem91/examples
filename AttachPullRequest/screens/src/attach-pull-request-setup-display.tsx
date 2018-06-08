@@ -3,7 +3,7 @@
 */
 
 import { Component } from "@stencil/core";
-import "@apizi/ui";
+import "@bearer/ui";
 
 @Component({
   tag: "attach-pull-request-setup-display",
@@ -12,7 +12,7 @@ import "@apizi/ui";
 export class AttachPullRequestSetupDisplay {
   render() {
     return (
-      <apizi-setup-display setup-id="BEARER_SCENARIO_ID" />
+      <bearer-setup-display setup-id="BEARER_SCENARIO_ID" />
     )
   }
 }
