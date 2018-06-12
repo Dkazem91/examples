@@ -105,49 +105,10 @@ export class AttachPullRequestDisplay {
   }
 
   handleRemoveClick = (full_name, number) => () => {
-    console.log('Bearer ID:', this.bearerId)
     const referenceId = `BEARER_SCENARIO_ID:remove:${this.bearerId}`
     Bearer.emitter.emit(referenceId, { full_name, number })
   }
 
-  renderPullRequest = ({
-    html_url,
-    title,
-    number,
-    state,
-    base,
-    head,
-    user
-  }) => {
-    return (
-      <div class={`pull-request ${state}`}>
-        <pull-request-icon state={state} />
-        <a class="content" href={html_url} target="_blank">
-          <div class="title">{title}</div>
-          <div>
-            <span>{base.repo.full_name}</span>{' '}
-            <span class="number">#{number}</span>{' '}
-            <bearer-typography as="span">
-              opened by {user.login}
-            </bearer-typography>
-          </div>
-          <div>
-            merge <span class="branch">{head.ref}</span> into{' '}
-            <span class="branch">{base.ref}</span>
-          </div>
-        </a>
-        <div>
-          <bearer-button
-            kind="danger"
-            onClick={this.handleRemoveClick(base.repo.full_name, number)}
-            size="sm"
-          >
-            X
-          </bearer-button>
-        </div>
-      </div>
-    )
-  }
   render() {
     if (this.loading) {
       return <bearer-loading />
@@ -155,6 +116,11 @@ export class AttachPullRequestDisplay {
     if (this.pullRequests.length === 0) {
       return 'No PR attached yet'
     }
-    return this.pullRequests.map(this.renderPullRequest)
+    return this.pullRequests.map(pr => (
+      <attached-pull-request-item
+        pullRequest={pr}
+        onRemove={this.handleRemoveClick}
+      />
+    ))
   }
 }

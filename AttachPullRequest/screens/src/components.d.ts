@@ -26,8 +26,12 @@ declare global {
   interface HTMLAttributes {}
 }
 
+import '@stencil/redux';
 import '@bearer/ui';
 
+import {
+  PR,
+} from './types.d';
 
 declare global {
 
@@ -194,6 +198,41 @@ declare global {
     export interface BearerFinalScreenAttributes extends HTMLAttributes {
       'onScenarioCompleted'?: (event: CustomEvent) => void;
       'perform'?: (any) => Promise<any>;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AttachedPullRequestItem {
+      'onRemove': (name: string, number: number) => void;
+      'pullRequest': PR;
+    }
+  }
+
+  interface HTMLAttachedPullRequestItemElement extends StencilComponents.AttachedPullRequestItem, HTMLStencilElement {}
+
+  var HTMLAttachedPullRequestItemElement: {
+    prototype: HTMLAttachedPullRequestItemElement;
+    new (): HTMLAttachedPullRequestItemElement;
+  };
+  interface HTMLElementTagNameMap {
+    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
+  }
+  interface ElementTagNameMap {
+    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'attached-pull-request-item': JSXElements.AttachedPullRequestItemAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AttachedPullRequestItemAttributes extends HTMLAttributes {
+      'onRemove'?: (name: string, number: number) => void;
+      'pullRequest'?: PR;
     }
   }
 }
