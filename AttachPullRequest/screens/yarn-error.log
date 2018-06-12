@@ -33,8 +33,8 @@ npm manifest:
       "test.watch": "jest --watch --no-cache"
     },
     "dependencies": {
-      "@apizi/core": "latest",
-      "@apizi/ui": "^0.7.15"
+      "@bearer/core": "latest",
+      "@bearer/ui": "^0.7.15"
     },
     "devDependencies": {
       "@stencil/core": "latest",
@@ -67,9 +67,9 @@ Lockfile:
   # yarn lockfile v1
   
   
-  "@apizi/core@^0.7.2", "@apizi/core@latest":
+  "@bearer/core@^0.7.2", "@bearer/core@latest":
     version "0.7.2"
-    resolved "https://registry.yarnpkg.com/@apizi/core/-/core-0.7.2.tgz#ccb565e6888919d9b7491ce4f6577696ffa679fe"
+    resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.7.2.tgz#ccb565e6888919d9b7491ce4f6577696ffa679fe"
     dependencies:
       babel-plugin-inline-dotenv "^1.1.2"
       fbemitter "^2.1.1"
@@ -78,11 +78,11 @@ Lockfile:
       rollup-plugin-replace "^2.0.0"
       typescript "^2.8.3"
   
-  "@apizi/ui@^0.7.15":
+  "@bearer/ui@^0.7.15":
     version "0.7.15"
-    resolved "https://registry.yarnpkg.com/@apizi/ui/-/ui-0.7.15.tgz#3f2c8cf093e8befe82d178b4a008135a9fdb5cba"
+    resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.7.15.tgz#3f2c8cf093e8befe82d178b4a008135a9fdb5cba"
     dependencies:
-      "@apizi/core" "^0.7.2"
+      "@bearer/core" "^0.7.2"
       "@stencil/sass" "^0.0.5"
       bootstrap "^4.1.0"
   

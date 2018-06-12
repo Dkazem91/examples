@@ -26,7 +26,7 @@ declare global {
   interface HTMLAttributes {}
 }
 
-import '@apizi/ui';
+import '@bearer/ui';
 
 
 declare global {

@@ -1,6 +1,6 @@
 import { Component } from '@stencil/core'
 
-import { BearerComponent, Intent, BearerFetch } from '@apizi/core'
+import { BearerComponent, Intent, BearerFetch } from '@bearer/core'
 
 @BearerComponent
 @Component({
@@ -35,11 +35,11 @@ export class ListRepositories {
 
   render() {
     return (
-      <apizi-scrollable
+      <bearer-scrollable
         fetcher={this.fetcher}
         perPage={10}
         renderCollection={collection => (
-          <apizi-navigator-collection
+          <bearer-navigator-collection
             data={collection}
             renderFunc={this.renderFunc}
           />

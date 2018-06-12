@@ -20,7 +20,7 @@ npm manifest:
     "description": "AttachPullRequest intents",
     "main": "index.js",
     "dependencies": {
-      "@apizi/intents": "latest",
+      "@bearer/intents": "latest",
       "axios": "^0.18.0"
     },
     "license": "MIT"
@@ -34,9 +34,9 @@ Lockfile:
   # yarn lockfile v1
   
   
-  "@apizi/intents@latest":
+  "@bearer/intents@latest":
     version "0.6.11"
-    resolved "https://registry.yarnpkg.com/@apizi/intents/-/intents-0.6.11.tgz#5c612c24b1c3110d9b73624ba2d3c7b37f5f596e"
+    resolved "https://registry.yarnpkg.com/@bearer/intents/-/intents-0.6.11.tgz#5c612c24b1c3110d9b73624ba2d3c7b37f5f596e"
   
   axios@^0.18.0:
     version "0.18.0"
