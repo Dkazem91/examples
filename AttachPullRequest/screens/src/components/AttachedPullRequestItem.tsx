@@ -1,4 +1,4 @@
-import { Prop, Component } from '@stencil/core'
+import { Prop, Component } from '@bearer/core'
 import { PR } from '../types.d'
 
 @Component({

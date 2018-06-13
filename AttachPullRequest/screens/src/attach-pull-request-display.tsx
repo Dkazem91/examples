@@ -3,15 +3,18 @@
   Its responsibility is to retrieve the scenario state from a previous action
   of a user.
 */
-import { Component, Prop, State, Method } from '@stencil/core'
-
 import Bearer, {
   BearerState,
   Intent,
   IntentType,
   BearerFetch,
-  BearerComponent
+  BearerComponent,
+  Component,
+  Prop,
+  State,
+  Method
 } from '@bearer/core'
+
 import '@bearer/ui'
 import { PR } from './types.d'
 
