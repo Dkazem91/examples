@@ -1,6 +1,4 @@
-import { Component } from '@stencil/core'
-
-import { BearerComponent, Intent, BearerFetch } from '@bearer/core'
+import { Component, BearerComponent, Intent, BearerFetch } from '@bearer/core'
 
 @BearerComponent
 @Component({
@@ -18,7 +16,7 @@ export class HelloWorld {
         <bearer-paginator
           fetcher={this.fetcher}
           perPage={10}
-          renderCollection={ collection => (
+          renderCollection={collection => (
             <bearer-navigator-collection
               data={collection}
               renderFunc={item => item}

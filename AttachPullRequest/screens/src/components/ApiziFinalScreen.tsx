@@ -1,4 +1,4 @@
-import { Component, Prop, Method, Event, EventEmitter } from '@stencil/core'
+import { Component, Prop, Method, Event, EventEmitter } from '@bearer/core'
 
 @Component({
   tag: 'bearer-final-screen',

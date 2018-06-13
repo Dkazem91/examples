@@ -4,9 +4,7 @@
 
 */
 
-import { Component, Prop } from '@stencil/core'
-import Bearer from '@bearer/core'
-
+import Bearer, { Component, Prop } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({

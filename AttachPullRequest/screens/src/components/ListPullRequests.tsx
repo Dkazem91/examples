@@ -1,6 +1,11 @@
-import { Component, Prop } from '@stencil/core'
+import {
+  Component,
+  Prop,
+  BearerComponent,
+  Intent,
+  BearerFetch
+} from '@bearer/core'
 
-import { BearerComponent, Intent, BearerFetch } from '@bearer/core'
 // import { Repository } from '../types.d'
 
 @BearerComponent
