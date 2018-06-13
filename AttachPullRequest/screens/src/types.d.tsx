@@ -22,3 +22,25 @@ export interface PR {
     login: string
   }
 }
+
+export declare interface State {
+  pullRequests: Array<PR>
+  repositories: Array<Repository>
+  respository?: Repository
+  attachedPullRequests: Array<PR>
+}
+
+export interface Action {
+  type: string
+  payload?: Object
+}
+
+export interface Store {
+  dispatch: () => any
+  subscribe: (cb: Function) => any
+  getState: () => any
+  getStore: () => any
+  setStore: (any: any) => void
+  mapStateToProps: (component: any, props: any) => void
+  mapDispatchToProps: (component: any, props: any) => void
+}

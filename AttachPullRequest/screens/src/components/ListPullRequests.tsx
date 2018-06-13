@@ -18,12 +18,9 @@ export class ListPullRequests {
   @Intent('listPullRequests') fetcher: BearerFetch
   @Prop() repository: any
 
-  renderCollection = collection => {
-    const display = document.querySelector('attach-pull-request-display')
-    const filtered = collection.map(
-      item =>
-        !display.isDisplayed(item) ? item : { ...item, _isDisabled: true }
-    )
+  // TODO: fix selected
+  renderCollection = () => {
+    const filtered = true
     return (
       <bearer-navigator-collection
         data={filtered}
