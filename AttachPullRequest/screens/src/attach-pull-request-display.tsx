@@ -3,12 +3,20 @@
   Its responsibility is to retrieve the scenario state from a previous action
   of a user.
 */
-import { Component, State } from '@bearer/core'
+import {
+  Component,
+  State,
+  Prop,
+  BearerState as ScenarioState,
+  IntentType,
+  BearerFetch,
+  Intent
+} from '@bearer/core'
 import '@bearer/ui'
 
 import { PR } from './types.d'
 import BearerState, { PromisifiedStore } from './BearerStateDecorator'
-// import { getPullRequest } from './store'
+import { ActionTypes } from './store'
 
 @Component({
   tag: 'attach-pull-request-display',
@@ -16,38 +24,20 @@ import BearerState, { PromisifiedStore } from './BearerStateDecorator'
   shadow: true
 })
 export class AttachPullRequestDisplay {
-  // @State() loading = true
-  // @Prop() bearerId = ''
+  @Prop() referenceId: string
+  @State() loading: boolean = true
   @BearerState store: PromisifiedStore
   @State() pullRequests: Array<PR> = []
+  @State() pullRequestsReceived: (pullRequest) => Function
+  @State() detachPullRequest: (pullRequest) => Function
 
-  // @Intent('getPullRequest', IntentType.GetResource)
-  // fetcher: BearerFetch
+  @Intent('getPullRequest', IntentType.GetResource)
+  fetcher: BearerFetch
 
-  // getPullRequest = ({ fullName, number }) =>
-  //   this.fetcher({ fullName, id: number })
-  //     .then(({ object: pullRequest }) => {
-  //       this.pullRequests = [
-  //         ...this.pullRequests,
-  //         { ...pullRequest, full_name: fullName }
-  //       ]
-  //     })
-  //     .catch(e => console.log(e))
-
-  // get adaptedPullRequests() {
-  //   return this.pullRequests.map(
-  //     ({ number, base: { repo: { full_name } } }) => {
-  //       return { number, full_name }
-  //     }
-  //   )
-  // }
-
-  // @Method()
-  // isDisplayed({ number, base: { repo: { full_name } } }) {
-  //   return this.adaptedPullRequests.find(
-  //     ({ full_name: fn, number: n }) => fn === full_name && n === number
-  //   )
-  // }
+  getPullRequest = ({ fullName, number }) =>
+    this.fetcher({ fullName, id: number })
+      .then(({ object: pullRequest }) => pullRequest)
+      .catch(e => console.log(e))
 
   // componentDidLoad() {
   //   const referenceId = `BEARER_SCENARIO_ID:${this.bearerId}`
@@ -99,20 +89,58 @@ export class AttachPullRequestDisplay {
   //     })
   // }
 
+  fetchState = () => {
+    ScenarioState.getData(this.referenceId)
+      .then(({ Item }: { Item: any }) => {
+        console.log('[BEARER]', Item)
+        if (Item.pullRequests && Item.pullRequests.length > 0) {
+          Promise.all(Item.pullRequests.map(this.getPullRequest)).then(
+            pullRequests => {
+              console.log('[BEARER]', 'state', pullRequests)
+              this.pullRequestsReceived(pullRequests)
+              this.loading = false
+            }
+          )
+        } else {
+          this.loading = false
+        }
+      })
+      .catch(e => {
+        console.error('error', e)
+        this.loading = false
+      })
+  }
+
   componentDidLoad() {
-    this.store.then(({ mapStateToProps }) => {
+    this.store.then(({ mapStateToProps, mapDispatchToProps }) => {
       mapStateToProps(this, ({ attachedPullRequests: pullRequests }) => ({
         pullRequests
       }))
+      mapDispatchToProps(this, {
+        pullRequestsReceived: pullRequests => dispatch =>
+          dispatch({
+            type: ActionTypes.STATE_RECEIVED,
+            payload: { pullRequests }
+          }),
+        detachPullRequest: pullRequest => dispatch =>
+          dispatch({
+            type: ActionTypes.PULL_REQUESTED_DETACHED,
+            payload: { pullRequest }
+          })
+      })
+
+      this.fetchState()
     })
   }
 
-  handleRemoveClick = (full_name, number) => () => {
-    console.log('[BEARER]')
-    console.log('[BEARER]', full_name, number)
+  handleRemoveClick = pullRequest => {
+    this.detachPullRequest(pullRequest)
   }
 
   render() {
+    if (this.loading) {
+      return <bearer-loading />
+    }
     if (this.pullRequests.length === 0) {
       return 'No PR attached yet'
     }

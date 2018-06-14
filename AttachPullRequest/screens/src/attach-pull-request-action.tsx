@@ -18,7 +18,9 @@ export class AttachPullRequestAction {
   @Prop() bearerDisplayId = ''
   @BearerState store: PromisifiedStore
   @State() attachPullRequest: any
-  intent = ({ pullRequest }) => this.attachPullRequest(pullRequest)
+
+  intent = ({ pullRequest }) =>
+    this.attachPullRequest(pullRequest) as Promise<any>
 
   componentDidLoad() {
     this.store.then(({ mapDispatchToProps }) => {

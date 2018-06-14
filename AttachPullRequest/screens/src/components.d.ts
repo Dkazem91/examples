@@ -70,7 +70,7 @@ declare global {
 
   namespace StencilComponents {
     interface AttachPullRequestDisplay {
-
+      'referenceId': string;
     }
   }
 
@@ -93,7 +93,7 @@ declare global {
   }
   namespace JSXElements {
     export interface AttachPullRequestDisplayAttributes extends HTMLAttributes {
-
+      'referenceId'?: string;
     }
   }
 }
@@ -206,7 +206,7 @@ declare global {
 
   namespace StencilComponents {
     interface AttachedPullRequestItem {
-      'onRemove': (name: string, number: number) => void;
+      'onRemove': (pullRequest: PR) => void;
       'pullRequest': PR;
     }
   }
@@ -230,7 +230,7 @@ declare global {
   }
   namespace JSXElements {
     export interface AttachedPullRequestItemAttributes extends HTMLAttributes {
-      'onRemove'?: (name: string, number: number) => void;
+      'onRemove'?: (pullRequest: PR) => void;
       'pullRequest'?: PR;
     }
   }

@@ -4,6 +4,7 @@ import { State, Action, PR } from './types.d'
 export enum ActionTypes {
   REPOSITORIES_RECEIVED = 'REPOSITORIES_RECEIVED',
   REPOSITORY_SELECTED = 'REPOSITORY_SELECTED',
+  STATE_RECEIVED = 'STATE_RECEIVED',
   PULL_REQUESTS_RECEIVED = 'PULL_REQUESTS_RECEIVED',
   PULL_REQUEST_SELECTED = 'PULL_REQUEST_SELECTED',
   PULL_REQUESTED_DETACHED = 'PULL_REQUESTED_DETACHED'
@@ -48,7 +49,6 @@ const initialState: State = {
 
 /* Reducers */
 const scenario = (state: State = initialState, { type, payload }: Action) => {
-  console.log('[BEARER]', state)
   switch (type) {
     case ActionTypes.REPOSITORIES_RECEIVED: {
       return {
@@ -84,9 +84,18 @@ const scenario = (state: State = initialState, { type, payload }: Action) => {
     case ActionTypes.PULL_REQUESTED_DETACHED: {
       return {
         ...state,
-        pullRequests: [
-          ...state.pullRequests.filter(pr => pr.number == payload['number'])
+        attachedPullRequests: [
+          ...state.attachedPullRequests.filter(
+            pr => pr.id !== payload['pullRequest']['id']
+          )
         ]
+      }
+    }
+
+    case ActionTypes.STATE_RECEIVED: {
+      return {
+        ...state,
+        attachedPullRequests: payload['pullRequests']
       }
     }
 
