@@ -36,4 +36,7 @@ function preparePayload(pullRequests) {
   }
 }
 
-export default connect(mapDispatchToProps)
+export default connect(
+  null,
+  mapDispatchToProps
+)

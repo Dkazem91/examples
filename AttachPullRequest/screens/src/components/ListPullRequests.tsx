@@ -37,10 +37,6 @@ export class ListPullRequests {
     )
   }
 
-  get displayComponent() {
-    return
-  }
-
   getPullRequests = () => {
     const fullName = this.repository.full_name
     return this.fetcher({ fullName })

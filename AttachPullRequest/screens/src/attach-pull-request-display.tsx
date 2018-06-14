@@ -7,7 +7,6 @@ import {
   Component,
   State,
   Prop,
-  BearerState as ScenarioState,
   IntentType,
   BearerFetch,
   Intent,
@@ -30,8 +29,8 @@ export class AttachPullRequestDisplay {
   @State() loading: boolean = true
   @BearerState store: PromisifiedStore
   @State() pullRequests: Array<PR> = []
-  @State() pullRequestsReceived: (pullRequest) => Function
   @State() detachPullRequest: (pullRequest) => Function
+  @State() fetchState: () => Promise<any>
 
   @Intent('getPullRequest', IntentType.GetResource)
   fetcher: BearerFetch
@@ -41,30 +40,17 @@ export class AttachPullRequestDisplay {
       .then(({ object: pullRequest }) => pullRequest)
       .catch(e => console.log(e))
 
-  fetchState = () => {
-    ScenarioState.getData(this.bearerId)
-      .then(({ Item }: { Item: any }) => {
-        if (Item.pullRequests) {
-          Promise.all(Item.pullRequests.map(this.getPullRequest)).then(
-            pullRequests => {
-              this.pullRequestsReceived(pullRequests.filter(pr => pr['id']))
-              this.loading = false
-            }
-          )
-        } else {
-          this.loading = false
-        }
-      })
-      .catch(e => {
-        console.error('error', e)
-        this.loading = false
-      })
-  }
-
   componentDidLoad() {
     this.store.then(store => {
       mapper(store, this)
+      this.loading = true
       this.fetchState()
+        .then(() => {
+          this.loading = false
+        })
+        .catch(() => {
+          this.loading = false
+        })
     })
   }
 

@@ -24,7 +24,9 @@ export class AttachPullRequestAction {
     this.attachPullRequest(pullRequest) as Promise<any>
 
   componentDidLoad() {
-    this.store.then(store => mapper(store, this))
+    this.store.then(store => {
+      mapper(store, this)
+    })
   }
 
   render() {
