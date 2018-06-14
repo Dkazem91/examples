@@ -168,6 +168,41 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AttachedPullRequestItem {
+      'onRemove': (pullRequest: PR) => void;
+      'pullRequest': PR;
+    }
+  }
+
+  interface HTMLAttachedPullRequestItemElement extends StencilComponents.AttachedPullRequestItem, HTMLStencilElement {}
+
+  var HTMLAttachedPullRequestItemElement: {
+    prototype: HTMLAttachedPullRequestItemElement;
+    new (): HTMLAttachedPullRequestItemElement;
+  };
+  interface HTMLElementTagNameMap {
+    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
+  }
+  interface ElementTagNameMap {
+    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'attached-pull-request-item': JSXElements.AttachedPullRequestItemAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AttachedPullRequestItemAttributes extends HTMLAttributes {
+      'onRemove'?: (pullRequest: PR) => void;
+      'pullRequest'?: PR;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface BearerFinalScreen {
       'getTitle': () => void;
       'perform': (any) => Promise<any>;
@@ -197,41 +232,6 @@ declare global {
     export interface BearerFinalScreenAttributes extends HTMLAttributes {
       'onScenarioCompleted'?: (event: CustomEvent) => void;
       'perform'?: (any) => Promise<any>;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface AttachedPullRequestItem {
-      'onRemove': (pullRequest: PR) => void;
-      'pullRequest': PR;
-    }
-  }
-
-  interface HTMLAttachedPullRequestItemElement extends StencilComponents.AttachedPullRequestItem, HTMLStencilElement {}
-
-  var HTMLAttachedPullRequestItemElement: {
-    prototype: HTMLAttachedPullRequestItemElement;
-    new (): HTMLAttachedPullRequestItemElement;
-  };
-  interface HTMLElementTagNameMap {
-    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
-  }
-  interface ElementTagNameMap {
-    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'attached-pull-request-item': JSXElements.AttachedPullRequestItemAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AttachedPullRequestItemAttributes extends HTMLAttributes {
-      'onRemove'?: (pullRequest: PR) => void;
-      'pullRequest'?: PR;
     }
   }
 }
