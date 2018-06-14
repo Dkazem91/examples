@@ -15,36 +15,7 @@ const initialState: State = {
   pullRequests: [],
   repositories: [],
   respository: null,
-  attachedPullRequests: [
-    {
-      id: 'ok',
-      html_url: 'ok',
-      title: 'ok',
-      number: 42,
-      state: 'open',
-      base: {
-        label: 'label',
-        ref: 'ref',
-        repo: {
-          url: 'ok',
-          name: 'repo name',
-          full_name: 'repo full_name'
-        }
-      },
-      head: {
-        label: 'label',
-        ref: 'ref',
-        repo: {
-          url: 'ok',
-          name: 'repo name',
-          full_name: 'repo full_name'
-        }
-      },
-      user: {
-        login: 'ok'
-      }
-    }
-  ]
+  attachedPullRequests: []
 }
 
 /* Reducers */
