@@ -5,7 +5,10 @@ type MapStateToPropsFunction = (
   component: any,
   mapState: (state: State) => any
 ) => void
-type MapDispatchToPropsFunction = (component: any, mapState: Function) => void
+type MapDispatchToPropsFunction = (
+  component: any,
+  mapState: { [key: string]: Function }
+) => void
 
 export declare interface BearerStore extends Store {
   store: Store
