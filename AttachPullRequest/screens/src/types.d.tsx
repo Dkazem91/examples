@@ -24,9 +24,6 @@ export interface PR {
 }
 
 export declare interface State {
-  pullRequests: Array<PR>
-  repositories: Array<Repository>
-  respository?: Repository
   attachedPullRequests: Array<PR>
 }
 

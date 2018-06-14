@@ -17,7 +17,7 @@ import '@bearer/ui'
 
 import { PR } from './types.d'
 import BearerState, { PromisifiedStore } from './BearerStateDecorator'
-import { ActionTypes } from './store'
+import mapper from './containers/attach-pull-request-display'
 
 @BearerComponent
 @Component({
@@ -44,7 +44,6 @@ export class AttachPullRequestDisplay {
   fetchState = () => {
     ScenarioState.getData(this.bearerId)
       .then(({ Item }: { Item: any }) => {
-        console.log('[BEARER]', Item)
         if (Item.pullRequests) {
           Promise.all(Item.pullRequests.map(this.getPullRequest)).then(
             pullRequests => {
@@ -63,32 +62,8 @@ export class AttachPullRequestDisplay {
   }
 
   componentDidLoad() {
-    this.store.then(({ mapStateToProps, mapDispatchToProps }) => {
-      mapStateToProps(this, ({ attachedPullRequests: pullRequests }) => ({
-        pullRequests
-      }))
-      mapDispatchToProps(this, {
-        pullRequestsReceived: pullRequests => dispatch =>
-          dispatch({
-            type: ActionTypes.STATE_RECEIVED,
-            payload: { pullRequests }
-          }),
-        detachPullRequest: pullRequest => (dispatch, state) =>
-          ScenarioState.storeData(
-            this.bearerId,
-            preparePayload(
-              state().attachedPullRequests.filter(
-                pr => pr['id'] !== pullRequest.id
-              )
-            )
-          ).then(() => {
-            dispatch({
-              type: ActionTypes.PULL_REQUESTED_DETACHED,
-              payload: { pullRequest }
-            })
-          })
-      })
-
+    this.store.then(store => {
+      mapper(store, this)
       this.fetchState()
     })
   }
@@ -110,21 +85,5 @@ export class AttachPullRequestDisplay {
         onRemove={this.handleRemoveClick}
       />
     ))
-  }
-}
-
-function preparePayload(pullRequests) {
-  return {
-    pullRequests: pullRequests.map(
-      ({
-        number,
-        base: {
-          repo: { full_name }
-        }
-      }) => ({
-        number,
-        fullName: full_name
-      })
-    )
   }
 }

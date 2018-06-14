@@ -4,16 +4,12 @@
 
 */
 
-import {
-  Component,
-  Prop,
-  State,
-  BearerState as ScenarioState
-} from '@bearer/core'
+import { Component, Prop, State } from '@bearer/core'
 import '@bearer/ui'
 
 import BearerState, { PromisifiedStore } from './BearerStateDecorator'
-import { ActionTypes } from './store'
+import mapper from './containers/attach-pull-request-action'
+
 @Component({
   tag: 'attach-pull-request',
   styleUrl: 'AttachPullRequest.css',
@@ -28,23 +24,7 @@ export class AttachPullRequestAction {
     this.attachPullRequest(pullRequest) as Promise<any>
 
   componentDidLoad() {
-    this.store.then(({ mapDispatchToProps }) => {
-      mapDispatchToProps(this, {
-        attachPullRequest: pullRequest => (dispatch, state) =>
-          new Promise((resolve, _reject) => {
-            ScenarioState.storeData(
-              this.bearerDisplayId,
-              preparePayload(state().attachedPullRequests.concat(pullRequest))
-            ).then(() => {
-              dispatch({
-                type: ActionTypes.PULL_REQUEST_SELECTED,
-                payload: { pullRequest }
-              })
-              resolve(true)
-            })
-          })
-      })
-    })
+    this.store.then(store => mapper(store, this))
   }
 
   render() {
@@ -65,22 +45,6 @@ export class AttachPullRequestAction {
         />
         <bearer-final-screen perform={this.intent} />
       </bearer-popover-navigator>
-    )
-  }
-}
-
-function preparePayload(pullRequests) {
-  return {
-    pullRequests: pullRequests.map(
-      ({
-        number,
-        base: {
-          repo: { full_name }
-        }
-      }) => ({
-        number,
-        fullName: full_name
-      })
     )
   }
 }

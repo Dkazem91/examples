@@ -1,9 +1,7 @@
 import { createStore } from 'redux'
-import { State, Action, PR } from './types.d'
+import { State, Action } from './types.d'
 
 export enum ActionTypes {
-  REPOSITORIES_RECEIVED = 'REPOSITORIES_RECEIVED',
-  REPOSITORY_SELECTED = 'REPOSITORY_SELECTED',
   STATE_RECEIVED = 'STATE_RECEIVED',
   PULL_REQUESTS_RECEIVED = 'PULL_REQUESTS_RECEIVED',
   PULL_REQUEST_SELECTED = 'PULL_REQUEST_SELECTED',
@@ -12,36 +10,12 @@ export enum ActionTypes {
 
 // reducers/scenario.js
 const initialState: State = {
-  pullRequests: [],
-  repositories: [],
-  respository: null,
   attachedPullRequests: []
 }
 
 /* Reducers */
 const scenario = (state: State = initialState, { type, payload }: Action) => {
   switch (type) {
-    case ActionTypes.REPOSITORIES_RECEIVED: {
-      return {
-        ...state,
-        repositories: payload,
-        pullRequests: []
-      }
-    }
-    case ActionTypes.REPOSITORY_SELECTED: {
-      return {
-        ...state,
-        respository: payload
-      }
-    }
-
-    case ActionTypes.PULL_REQUESTS_RECEIVED: {
-      return {
-        ...state,
-        pullRequests: payload
-      }
-    }
-
     case ActionTypes.PULL_REQUEST_SELECTED: {
       return {
         ...state,
@@ -77,14 +51,6 @@ const scenario = (state: State = initialState, { type, payload }: Action) => {
 }
 
 // end reducers/scenario.js
-
-/* Selectors */
-type GlobalState = {
-  scenario: State
-}
-
-export const getPullRequest = ({ scenario }: GlobalState): Array<PR> =>
-  scenario.pullRequests
 
 /* Store */
 const configStore = () => {

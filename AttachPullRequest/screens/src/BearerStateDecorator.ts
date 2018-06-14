@@ -30,6 +30,7 @@ function BearerState(target: any, key: string) {
         component: any,
         props: any
       ) {
+        console.log('[BEARER]', 'component', component, props)
         Object.keys(props).forEach(actionName => {
           const action = props[actionName]
           Object.defineProperty(component, actionName, {
@@ -75,6 +76,23 @@ function BearerState(target: any, key: string) {
       get: getter,
       set: setter
     })
+  }
+}
+
+export function connect(
+  mapStateToProps?: Function,
+  mapDispatchToProps?: Function
+) {
+  return (store, component) => {
+    if (mapStateToProps) {
+      store.mapStateToProps(component, mapStateToProps.bind(component))
+    }
+    if (mapDispatchToProps) {
+      store.mapDispatchToProps(
+        component,
+        mapDispatchToProps.bind(component)(store.store.getState())
+      )
+    }
   }
 }
 
