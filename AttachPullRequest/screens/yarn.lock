@@ -42,7 +42,7 @@
   dependencies:
     netmask "^1.0.6"
 
-"@stencil/core@^0.9.7", "@stencil/core@latest":
+"@stencil/core@^0.9.7":
   version "0.9.7"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-0.9.7.tgz#610b1338b15dbfa40ac5d66428a3ccaa2a2d354f"
   dependencies:

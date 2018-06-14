@@ -6,8 +6,6 @@ import {
   BearerFetch
 } from '@bearer/core'
 
-// import { Repository } from '../types.d'
-
 @BearerComponent
 @Component({
   tag: 'list-pull-requests',
@@ -18,12 +16,10 @@ export class ListPullRequests {
   @Intent('listPullRequests') fetcher: BearerFetch
   @Prop() repository: any
 
-  // TODO: fix selected
-  renderCollection = () => {
-    const filtered = true
+  renderCollection = collection => {
     return (
       <bearer-navigator-collection
-        data={filtered}
+        data={collection}
         renderFunc={this.renderFunc}
       />
     )
@@ -54,7 +50,7 @@ export class ListPullRequests {
     return (
       <bearer-scrollable
         fetcher={this.getPullRequests}
-        renderCollection={this.renderCollection.bind(this)}
+        renderCollection={this.renderCollection}
       />
     )
   }

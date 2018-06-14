@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 import { State, Action, PR } from './types.d'
 
-enum ActionTypes {
+export enum ActionTypes {
   REPOSITORIES_RECEIVED = 'REPOSITORIES_RECEIVED',
   REPOSITORY_SELECTED = 'REPOSITORY_SELECTED',
   PULL_REQUESTS_RECEIVED = 'PULL_REQUESTS_RECEIVED',
@@ -74,7 +74,10 @@ const scenario = (state: State = initialState, { type, payload }: Action) => {
     case ActionTypes.PULL_REQUEST_SELECTED: {
       return {
         ...state,
-        pullRequests: [...state.pullRequests, payload]
+        attachedPullRequests: [
+          ...state.attachedPullRequests,
+          payload['pullRequest']
+        ]
       }
     }
 
