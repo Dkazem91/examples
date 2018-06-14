@@ -4,7 +4,12 @@
 
 */
 
-import { Component, Prop, State } from '@bearer/core'
+import {
+  Component,
+  Prop,
+  State,
+  BearerState as ScenarioState
+} from '@bearer/core'
 import '@bearer/ui'
 
 import BearerState, { PromisifiedStore } from './BearerStateDecorator'
@@ -25,13 +30,18 @@ export class AttachPullRequestAction {
   componentDidLoad() {
     this.store.then(({ mapDispatchToProps }) => {
       mapDispatchToProps(this, {
-        attachPullRequest: pullRequest => (dispatch, _state) =>
+        attachPullRequest: pullRequest => (dispatch, state) =>
           new Promise((resolve, _reject) => {
-            dispatch({
-              type: ActionTypes.PULL_REQUEST_SELECTED,
-              payload: { pullRequest }
+            ScenarioState.storeData(
+              this.bearerDisplayId,
+              preparePayload(state().attachedPullRequests.concat(pullRequest))
+            ).then(() => {
+              dispatch({
+                type: ActionTypes.PULL_REQUEST_SELECTED,
+                payload: { pullRequest }
+              })
+              resolve(true)
             })
-            resolve(true)
           })
       })
     })
@@ -55,6 +65,22 @@ export class AttachPullRequestAction {
         />
         <bearer-final-screen perform={this.intent} />
       </bearer-popover-navigator>
+    )
+  }
+}
+
+function preparePayload(pullRequests) {
+  return {
+    pullRequests: pullRequests.map(
+      ({
+        number,
+        base: {
+          repo: { full_name }
+        }
+      }) => ({
+        number,
+        fullName: full_name
+      })
     )
   }
 }

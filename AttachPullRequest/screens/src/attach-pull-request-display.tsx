@@ -10,7 +10,8 @@ import {
   BearerState as ScenarioState,
   IntentType,
   BearerFetch,
-  Intent
+  Intent,
+  BearerComponent
 } from '@bearer/core'
 import '@bearer/ui'
 
@@ -18,13 +19,14 @@ import { PR } from './types.d'
 import BearerState, { PromisifiedStore } from './BearerStateDecorator'
 import { ActionTypes } from './store'
 
+@BearerComponent
 @Component({
   tag: 'attach-pull-request-display',
   styleUrl: 'AttachPullRequest.css',
   shadow: true
 })
 export class AttachPullRequestDisplay {
-  @Prop() referenceId: string
+  @Prop() bearerId: string
   @State() loading: boolean = true
   @BearerState store: PromisifiedStore
   @State() pullRequests: Array<PR> = []
@@ -39,65 +41,14 @@ export class AttachPullRequestDisplay {
       .then(({ object: pullRequest }) => pullRequest)
       .catch(e => console.log(e))
 
-  // componentDidLoad() {
-  //   const referenceId = `BEARER_SCENARIO_ID:${this.bearerId}`
-  //   Bearer.emitter.addListener(
-  //     `BEARER_SCENARIO_ID:add:${this.bearerId}`,
-  //     ({ pullRequest }) => {
-  //       this.pullRequests = [...this.pullRequests, pullRequest]
-
-  //       BearerState.storeData(`BEARER_SCENARIO_ID:${this.bearerId}`, {
-  //         pullRequests: this.adaptedPullRequests
-  //       })
-  //     }
-  //   )
-
-  //   Bearer.emitter.addListener(
-  //     `BEARER_SCENARIO_ID:remove:${this.bearerId}`,
-  //     ({ full_name, number }) => {
-  //       this.pullRequests = this.pullRequests.filter(
-  //         ({ base: { repo: { full_name: fn } }, number: n }) =>
-  //           fn != full_name || n != number
-  //       )
-
-  //       BearerState.storeData(referenceId, {
-  //         pullRequests: this.adaptedPullRequests
-  //       })
-  //     }
-  //   )
-
-  //   BearerState.getData(referenceId)
-  //     .then(({ Item }: { Item: any }) => {
-  //       if (Item.pullRequests && Item.pullRequests.length > 0) {
-  //         Promise.all(
-  //           Item.pullRequests.map(item =>
-  //             this.getPullRequest({
-  //               fullName: item.full_name,
-  //               number: item.number
-  //             })
-  //           )
-  //         ).then(() => {
-  //           this.loading = false
-  //         })
-  //       } else {
-  //         this.loading = false
-  //       }
-  //     })
-  //     .catch(e => {
-  //       console.error('error', e)
-  //       this.loading = false
-  //     })
-  // }
-
   fetchState = () => {
-    ScenarioState.getData(this.referenceId)
+    ScenarioState.getData(this.bearerId)
       .then(({ Item }: { Item: any }) => {
         console.log('[BEARER]', Item)
-        if (Item.pullRequests && Item.pullRequests.length > 0) {
+        if (Item.pullRequests) {
           Promise.all(Item.pullRequests.map(this.getPullRequest)).then(
             pullRequests => {
-              console.log('[BEARER]', 'state', pullRequests)
-              this.pullRequestsReceived(pullRequests)
+              this.pullRequestsReceived(pullRequests.filter(pr => pr['id']))
               this.loading = false
             }
           )
@@ -122,10 +73,19 @@ export class AttachPullRequestDisplay {
             type: ActionTypes.STATE_RECEIVED,
             payload: { pullRequests }
           }),
-        detachPullRequest: pullRequest => dispatch =>
-          dispatch({
-            type: ActionTypes.PULL_REQUESTED_DETACHED,
-            payload: { pullRequest }
+        detachPullRequest: pullRequest => (dispatch, state) =>
+          ScenarioState.storeData(
+            this.bearerId,
+            preparePayload(
+              state().attachedPullRequests.filter(
+                pr => pr['id'] !== pullRequest.id
+              )
+            )
+          ).then(() => {
+            dispatch({
+              type: ActionTypes.PULL_REQUESTED_DETACHED,
+              payload: { pullRequest }
+            })
           })
       })
 
@@ -150,5 +110,21 @@ export class AttachPullRequestDisplay {
         onRemove={this.handleRemoveClick}
       />
     ))
+  }
+}
+
+function preparePayload(pullRequests) {
+  return {
+    pullRequests: pullRequests.map(
+      ({
+        number,
+        base: {
+          repo: { full_name }
+        }
+      }) => ({
+        number,
+        fullName: full_name
+      })
+    )
   }
 }

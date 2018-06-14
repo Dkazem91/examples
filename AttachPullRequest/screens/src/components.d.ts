@@ -70,7 +70,7 @@ declare global {
 
   namespace StencilComponents {
     interface AttachPullRequestDisplay {
-      'referenceId': string;
+      'bearerId': string;
     }
   }
 
@@ -93,7 +93,7 @@ declare global {
   }
   namespace JSXElements {
     export interface AttachPullRequestDisplayAttributes extends HTMLAttributes {
-      'referenceId'?: string;
+      'bearerId'?: string;
     }
   }
 }
