@@ -19,8 +19,7 @@
   "dependencies": {
     "@bearer/core": "latest",
     "@bearer/ui": "latest",
-    "@stencil/redux": "^0.0.4",
-    "redux": "^4.0.0"
+    "@stencil/redux": "^0.0.4"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",

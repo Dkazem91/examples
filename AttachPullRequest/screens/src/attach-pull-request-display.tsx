@@ -12,11 +12,13 @@ import {
   Intent,
   BearerComponent
 } from '@bearer/core'
+import { PromisifiedStore, BearerState } from '@bearer/core/dist/state'
 import '@bearer/ui'
 
 import { PR } from './types.d'
-import BearerState, { PromisifiedStore } from './BearerStateDecorator'
 import mapper from './containers/attach-pull-request-display'
+
+import { configStore } from './store'
 
 @BearerComponent
 @Component({
@@ -27,7 +29,7 @@ import mapper from './containers/attach-pull-request-display'
 export class AttachPullRequestDisplay {
   @Prop() bearerId: string
   @State() loading: boolean = true
-  @BearerState store: PromisifiedStore
+  @BearerState(configStore) store: PromisifiedStore
   @State() pullRequests: Array<PR> = []
   @State() detachPullRequest: (pullRequest) => Function
   @State() fetchState: () => Promise<any>

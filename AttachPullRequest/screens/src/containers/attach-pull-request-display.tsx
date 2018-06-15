@@ -1,5 +1,5 @@
 import { BearerState as ScenarioState } from '@bearer/core'
-import { connect } from '../BearerStateDecorator'
+import { connect } from '@bearer/core/dist/state'
 import { ActionTypes } from '../store'
 import { preparePayload } from './attach-pull-request-action'
 
