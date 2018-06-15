@@ -20,7 +20,7 @@ function mapDispatchToProps() {
   }
 }
 
-function preparePayload(pullRequests) {
+export function preparePayload(pullRequests) {
   return {
     pullRequests: pullRequests.map(
       ({

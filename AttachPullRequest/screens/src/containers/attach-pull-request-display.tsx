@@ -1,6 +1,7 @@
 import { BearerState as ScenarioState } from '@bearer/core'
 import { connect } from '../BearerStateDecorator'
 import { ActionTypes } from '../store'
+import { preparePayload } from './attach-pull-request-action'
 
 function mapDispatchToProps() {
   return {
@@ -40,22 +41,6 @@ function mapDispatchToProps() {
 function mapStateToProps(state) {
   return {
     pullRequests: state.attachedPullRequests
-  }
-}
-
-function preparePayload(pullRequests) {
-  return {
-    pullRequests: pullRequests.map(
-      ({
-        number,
-        base: {
-          repo: { full_name }
-        }
-      }) => ({
-        number,
-        fullName: full_name
-      })
-    )
   }
 }
 
