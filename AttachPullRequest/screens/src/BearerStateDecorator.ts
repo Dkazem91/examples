@@ -26,6 +26,7 @@ function getStore(): Store {
 function BearerState(target: any, key: string) {
   const getter = (): PromisifiedStore => {
     return new Promise<BearerStore>((resolve, _reject) => {
+      const store = getStore()
       const mapDispatchToProps: MapDispatchToPropsFunction = function(
         component: any,
         props: any
@@ -35,7 +36,7 @@ function BearerState(target: any, key: string) {
           const action = props[actionName]
           Object.defineProperty(component, actionName, {
             get: () => (...args: any[]) =>
-              action(...args)(getStore().dispatch, getStore().getState),
+              action(...args)(store.dispatch, store.getState),
             configurable: true,
             enumerable: true
           })
@@ -48,7 +49,8 @@ function BearerState(target: any, key: string) {
       ) {
         // TODO: Don't listen for each component
         const _mapStateToProps = (_component: any, _mapState: any) => {
-          const mergeProps = mapState(getStore().getState())
+          const mergeProps = mapState(store.getState())
+
           Object.keys(mergeProps).forEach(newPropName => {
             let newPropValue = mergeProps[newPropName]
             component[newPropName] = newPropValue
@@ -56,13 +58,13 @@ function BearerState(target: any, key: string) {
           })
         }
 
-        getStore().subscribe(() => _mapStateToProps(component, mapState))
+        store.subscribe(() => _mapStateToProps(component, mapState))
 
         _mapStateToProps(component, mapState)
       }
 
       resolve({
-        store: getStore(),
+        store,
         mapStateToProps,
         mapDispatchToProps
       } as BearerStore)
