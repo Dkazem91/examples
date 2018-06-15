@@ -16,23 +16,25 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@bearer/core@^0.0.9", "@bearer/core@latest":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.0.9.tgz#ce4861fd77318250f2ab226f9e000f62ededd74d"
+"@bearer/core@0.0.12", "@bearer/core@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.0.12.tgz#6af02d4df3fc45c839f8689a3f093299117410fa"
   dependencies:
     "@stencil/core" "^0.9.7"
     babel-plugin-inline-dotenv "^1.1.2"
     fbemitter "^2.1.1"
     rc "^1.2.8"
+    redux "^4.0.0"
     rollup-plugin-env "^0.21.4"
     rollup-plugin-replace "^2.0.0"
-    typescript "^2.8.3"
+    typescript "^2.9.2"
 
-"@bearer/ui@latest":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.0.9.tgz#6596d2f7321cda99bef2a6ccb6d1d17639585198"
+"@bearer/ui@0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.0.12.tgz#6a8ea848342128781de30e8843ac596e561599cd"
   dependencies:
-    "@bearer/core" "^0.0.9"
+    "@bearer/core" "^0.0.12"
+    "@stencil/redux" "^0.0.4"
     "@stencil/sass" "^0.0.5"
     bootstrap "^4.1.0"
 
@@ -2818,7 +2820,7 @@ longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
-loose-envify@^1.0.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
   dependencies:
@@ -3656,6 +3658,13 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
+redux@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.0.tgz#aa698a92b729315d22b34a0553d7e6533555cc03"
+  dependencies:
+    loose-envify "^1.1.0"
+    symbol-observable "^1.2.0"
+
 regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
@@ -4266,6 +4275,10 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
+symbol-observable@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
+
 symbol-tree@^3.2.1, symbol-tree@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
@@ -4408,6 +4421,10 @@ typedarray@^0.0.6:
 typescript@^2.8.3:
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.1.tgz#fdb19d2c67a15d11995fd15640e373e09ab09961"
+
+typescript@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
 
 ua-parser-js@^0.7.9:
   version "0.7.18"

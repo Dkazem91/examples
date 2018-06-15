@@ -27,6 +27,7 @@ declare global {
 }
 
 import '@bearer/ui';
+import '@stencil/redux';
 
 import {
   PR,
