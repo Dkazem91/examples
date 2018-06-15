@@ -30,6 +30,7 @@ import '@bearer/ui';
 
 import {
   PR,
+  Repository,
 } from './types.d';
 
 declare global {
@@ -70,7 +71,6 @@ declare global {
   namespace StencilComponents {
     interface AttachPullRequestDisplay {
       'bearerId': string;
-      'isDisplayed': ({ number, base: { repo: { full_name } } }: { number: any; base: { repo: { full_name: any; }; }; }) => { number: number; full_name: string; };
     }
   }
 
@@ -168,6 +168,41 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AttachedPullRequestItem {
+      'onRemove': (pullRequest: PR) => void;
+      'pullRequest': PR;
+    }
+  }
+
+  interface HTMLAttachedPullRequestItemElement extends StencilComponents.AttachedPullRequestItem, HTMLStencilElement {}
+
+  var HTMLAttachedPullRequestItemElement: {
+    prototype: HTMLAttachedPullRequestItemElement;
+    new (): HTMLAttachedPullRequestItemElement;
+  };
+  interface HTMLElementTagNameMap {
+    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
+  }
+  interface ElementTagNameMap {
+    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'attached-pull-request-item': JSXElements.AttachedPullRequestItemAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AttachedPullRequestItemAttributes extends HTMLAttributes {
+      'onRemove'?: (pullRequest: PR) => void;
+      'pullRequest'?: PR;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface BearerFinalScreen {
       'getTitle': () => void;
       'perform': (any) => Promise<any>;
@@ -197,41 +232,6 @@ declare global {
     export interface BearerFinalScreenAttributes extends HTMLAttributes {
       'onScenarioCompleted'?: (event: CustomEvent) => void;
       'perform'?: (any) => Promise<any>;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface AttachedPullRequestItem {
-      'onRemove': (name: string, number: number) => void;
-      'pullRequest': PR;
-    }
-  }
-
-  interface HTMLAttachedPullRequestItemElement extends StencilComponents.AttachedPullRequestItem, HTMLStencilElement {}
-
-  var HTMLAttachedPullRequestItemElement: {
-    prototype: HTMLAttachedPullRequestItemElement;
-    new (): HTMLAttachedPullRequestItemElement;
-  };
-  interface HTMLElementTagNameMap {
-    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
-  }
-  interface ElementTagNameMap {
-    'attached-pull-request-item': HTMLAttachedPullRequestItemElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'attached-pull-request-item': JSXElements.AttachedPullRequestItemAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AttachedPullRequestItemAttributes extends HTMLAttributes {
-      'onRemove'?: (name: string, number: number) => void;
-      'pullRequest'?: PR;
     }
   }
 }
@@ -397,6 +397,39 @@ declare global {
   namespace JSXElements {
     export interface PullRequestIconAttributes extends HTMLAttributes {
       'state'?: '' | 'open' | 'closed' | 'merged';
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface RepositoryItem {
+      'repository': Repository;
+    }
+  }
+
+  interface HTMLRepositoryItemElement extends StencilComponents.RepositoryItem, HTMLStencilElement {}
+
+  var HTMLRepositoryItemElement: {
+    prototype: HTMLRepositoryItemElement;
+    new (): HTMLRepositoryItemElement;
+  };
+  interface HTMLElementTagNameMap {
+    'repository-item': HTMLRepositoryItemElement;
+  }
+  interface ElementTagNameMap {
+    'repository-item': HTMLRepositoryItemElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'repository-item': JSXElements.RepositoryItemAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface RepositoryItemAttributes extends HTMLAttributes {
+      'repository'?: Repository;
     }
   }
 }

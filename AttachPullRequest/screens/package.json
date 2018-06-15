@@ -18,10 +18,11 @@
   },
   "dependencies": {
     "@bearer/core": "latest",
-    "@bearer/ui": "latest"
+    "@bearer/ui": "latest",
+    "@stencil/redux": "^0.0.4",
+    "redux": "^4.0.0"
   },
   "devDependencies": {
-    "@stencil/core": "latest",
     "@stencil/dev-server": "latest",
     "@stencil/utils": "latest",
     "@types/jest": "latest",

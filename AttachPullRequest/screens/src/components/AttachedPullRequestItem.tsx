@@ -6,11 +6,10 @@ import { PR } from '../types.d'
 })
 export class AttachedPullRequestItem {
   @Prop() pullRequest: PR
-  @Prop() onRemove: (name: string, number: number) => void
+  @Prop() onRemove: (pullRequest: PR) => void
 
   clickHandler = _e => {
-    const { base: { repo: { full_name } }, number } = this.pullRequest
-    this.onRemove(full_name, number)
+    this.onRemove(this.pullRequest)
   }
 
   render() {

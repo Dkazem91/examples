@@ -23,6 +23,6 @@ export class BearerFinalScreen {
   @Method()
   getTitle() {}
   render() {
-    return null
+    return <slot />
   }
 }

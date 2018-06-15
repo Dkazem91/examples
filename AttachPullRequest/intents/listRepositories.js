@@ -26,7 +26,6 @@ module.exports.action = (token, params, callback) =>
       callback({ collection: response.data })
     })
     .catch(e => {
-      console.log(e)
       callback({ collection: [] })
     })
 

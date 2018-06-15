@@ -1,20 +1,20 @@
-const { GetObject } = require("@bearer/intents");
+const { GetObject } = require('@bearer/intents')
 
-const axios = require("axios");
+const axios = require('axios')
 
 const CLIENT = axios.create({
-  baseURL: "https://api.github.com/",
+  baseURL: 'https://api.github.com/',
   timeout: 5000,
   headers: {
-    Accept: "application/vnd.github.v3+json",
-    "User-Agent": "Bearer"
+    Accept: 'application/vnd.github.v3+json',
+    'User-Agent': 'Bearer'
   }
-});
+})
 
 function headersFor(token) {
   return {
     Authorization: `token ${token}`
-  };
+  }
 }
 
 module.exports.action = (token, { fullName, id, ...params }, callback) => {
@@ -23,12 +23,11 @@ module.exports.action = (token, { fullName, id, ...params }, callback) => {
     headers: headersFor(token)
   })
     .then(response => {
-      callback({ object: response.data });
+      callback({ object: response.data })
     })
     .catch(e => {
-      console.log(e);
-      callback({ object: null });
-    });
-};
-module.exports.intentType = GetObject;
-module.exports.intentName = "getPullRequest";
+      callback({ object: null })
+    })
+}
+module.exports.intentType = GetObject
+module.exports.intentName = 'getPullRequest'

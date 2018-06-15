@@ -26,7 +26,6 @@ module.exports.action = (token, { fullName, ...params }, callback) =>
       callback({ collection: response.data })
     })
     .catch(e => {
-      console.log(e)
       callback({ collection: [] })
     })
 module.exports.intentType = GetCollection
