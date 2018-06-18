@@ -63,7 +63,7 @@ export class AttachPullRequestDisplay {
       return <bearer-loading />
     }
     if (this.pullRequests.length === 0) {
-      return 'No PR attached yet'
+      return <slot name="empty">No PR attached yet</slot>
     }
     return this.pullRequests.map(pr => (
       <attached-pull-request-item
