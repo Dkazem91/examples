@@ -63,7 +63,11 @@ export class AttachPullRequestDisplay {
       return <bearer-loading />
     }
     if (this.pullRequests.length === 0) {
-      return <slot name="empty">No PR attached yet</slot>
+      return (
+        <slot name="empty">
+          <bearer-alert kind="info">No PR attached yet!</bearer-alert>
+        </slot>
+      )
     }
     return this.pullRequests.map(pr => (
       <attached-pull-request-item
