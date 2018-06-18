@@ -1,4 +1,4 @@
-import { createStore } from 'redux'
+import { createStore } from '@bearer/core/dist/state'
 import { State, Action } from './types.d'
 
 export enum ActionTypes {

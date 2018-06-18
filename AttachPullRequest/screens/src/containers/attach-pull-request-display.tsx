@@ -1,5 +1,5 @@
 import { BearerState as ScenarioState } from '@bearer/core'
-import { connect } from '../BearerStateDecorator'
+import { connect } from '@bearer/core/dist/state'
 import { ActionTypes } from '../store'
 import { preparePayload } from './attach-pull-request-action'
 
@@ -19,9 +19,9 @@ function mapDispatchToProps() {
       }),
     fetchState: () => dispatch =>
       ScenarioState.getData(this.bearerId)
-        .then(({ Item }: { Item: any }) => {
+        .then(async ({ Item }: { Item: any }) => {
           if (Item.pullRequests) {
-            Promise.all(Item.pullRequests.map(this.getPullRequest)).then(
+            await Promise.all(Item.pullRequests.map(this.getPullRequest)).then(
               pullRequests => {
                 dispatch({
                   type: ActionTypes.STATE_RECEIVED,
@@ -29,7 +29,6 @@ function mapDispatchToProps() {
                 })
               }
             )
-          } else {
           }
         })
         .catch(e => {

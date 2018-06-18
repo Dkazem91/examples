@@ -5,10 +5,11 @@
 */
 
 import { Component, Prop, State } from '@bearer/core'
+import { PromisifiedStore, BearerState } from '@bearer/core/dist/state'
 import '@bearer/ui'
 
-import BearerState, { PromisifiedStore } from './BearerStateDecorator'
 import mapper from './containers/attach-pull-request-action'
+import { configStore } from './store'
 
 @Component({
   tag: 'attach-pull-request',
@@ -17,7 +18,7 @@ import mapper from './containers/attach-pull-request-action'
 })
 export class AttachPullRequestAction {
   @Prop() bearerDisplayId = ''
-  @BearerState store: PromisifiedStore
+  @BearerState(configStore) store: PromisifiedStore
   @State() attachPullRequest: any
 
   intent = ({ pullRequest }) =>
