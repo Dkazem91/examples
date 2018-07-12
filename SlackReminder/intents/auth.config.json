@@ -8,7 +8,7 @@
   },
   "config": {
     "accessType": "offline",
-    "scope": ["reminders:write"]
+    "scope": ["reminders:write", "channels:read", "groups:read"]
   },
-  "setup": [{ "label": "Client ID", "type": "text", "controlName": "client_id" }]
+  "setupScreen": [{ "label": "Client ID", "type": "text", "controlName": "clientID" }, { "label": "Client Secret", "type": "password", "controlName": "clientSecret" }]
 }

@@ -20,7 +20,7 @@ export class SlackReminderAction {
         </bearer-typography>
         <bearer-navigator>
           <bearer-navigator-auth-screen />
-          <bearer-navigator-screen navigationTitle="Characters" renderFunc={() => <list-star-wars-characters />} />
+          <bearer-navigator-screen navigationTitle="Who?" renderFunc={() => <list-star-wars-characters />} />
         </bearer-navigator>
       </div>
     )
