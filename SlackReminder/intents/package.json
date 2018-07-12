@@ -1,0 +1,15 @@
+{
+  "name": "slack-reminder-intents",
+  "version": "0.0.1",
+  "description": "SlackReminder intents",
+  "main": "index.js",
+  "dependencies": {
+    "@bearer/intents": "latest",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@bearer/bearer-cli": "latest",
+    "@types/node": "latest"
+  },
+  "license": "MIT"
+}
