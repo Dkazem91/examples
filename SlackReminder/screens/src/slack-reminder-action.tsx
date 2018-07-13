@@ -16,11 +16,11 @@ export class SlackReminderAction {
     return (
       <div>
         <bearer-typography as="h1" kind="h3">
-          SlackReminder Scenario
+          <span>SlackReminder Scenario</span>
         </bearer-typography>
         <bearer-navigator>
           <bearer-navigator-auth-screen />
-          <bearer-navigator-screen navigationTitle="Who?" renderFunc={() => <list-star-wars-characters />} />
+          <bearer-navigator-screen navigationTitle="Who?" renderFunc={() => <who-when-selector />} />
         </bearer-navigator>
       </div>
     )
