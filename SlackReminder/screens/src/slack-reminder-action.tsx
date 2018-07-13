@@ -3,7 +3,7 @@
 
 */
 
-import { Component } from '@bearer/core'
+import { Component, SaveStateIntent, BearerFetch, Prop } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({
@@ -12,17 +12,45 @@ import '@bearer/ui'
   shadow: true
 })
 export class SlackReminderAction {
+  @SaveStateIntent() intent: BearerFetch
+  
+  @Prop() text: string
+  @Prop() what?: string
+  @Prop() when?: string
+  @Prop() who?: string
+  // @Prop() remindMe: boolean = false
+  remindMe = () =>
+    this.intent({
+      body: {
+        who: this.who,
+        what: this.what,
+        when: this.when
+      }
+    }).then(console.log)
+
   render() {
-    return (
-      <div>
-        <bearer-typography as="h1" kind="h3">
-          <span>SlackReminder Scenario</span>
-        </bearer-typography>
-        <bearer-navigator>
-          <bearer-navigator-auth-screen />
-          <bearer-navigator-screen navigationTitle="Who?" renderFunc={() => <who-when-selector />} />
-        </bearer-navigator>
-      </div>
+    const multipleScreens = !this.who || !this.when || !this.what 
+    const btnProps: JSXElements.BearerButtonAttributes = { kind: 'primary', content: this.text } 
+    return !multipleScreens 
+        ?
+          <bearer-button onClick={this.remindMe} kind="primary" content={this.text} />
+        : <bearer-dropdown-button btnProps={btnProps}>
+            <div>Ok</div>
+          </bearer-dropdown-button>
+      // <div>
+      //   <bearer-typography as="h1" kind="h3">
+      //     <span>SlackReminder Scenario</span>
+      //   </bearer-typography>
+      //   <bearer-navigator>
+      //     <bearer-navigator-auth-screen />
+      //     {!this.remindMe &&
+      //       <bearer-navigator-screen
+      //         navigationTitle="Who?"
+      //         renderFunc={() => <who-when-selector intent={this.intent} />}
+      //       />
+      //     }
+      //   </bearer-navigator>
+      // </div>
     )
   }
 }

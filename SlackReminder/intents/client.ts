@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const CLIENT = axios.create({
-  baseURL: 'https://swapi.co/api/',
+  baseURL: 'https://slack.com/api/',
   timeout: 5000,
   headers: {
     Accept: 'application/json',
@@ -11,6 +11,8 @@ export const CLIENT = axios.create({
 
 export function headersFor(token) {
   return {
-    Authorization: `token ${token}`
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   }
 }
