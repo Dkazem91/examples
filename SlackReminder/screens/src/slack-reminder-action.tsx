@@ -18,15 +18,30 @@ export class SlackReminderAction {
   @Prop() what?: string
   @Prop() when?: string
   @Prop() who?: string
-  // @Prop() remindMe: boolean = false
-  remindMe = () =>
+
+  perform = ({ who, what, when }): Promise<any> =>
     this.intent({
       body: {
-        who: this.who,
-        what: this.what,
-        when: this.when
+        who,
+        what,
+        when
       }
-    }).then(console.log)
+    })
+
+  remindMe = (): Promise<any> =>
+    this.perform({
+      who: this.who,
+      what: this.what,
+      when: this.when
+    })
+
+  remindMeFromScreen = ({ who, what, when }): Promise<any> => {
+    return this.perform({
+      when,
+      what,
+      who: this.who || who.id
+    })
+  }
 
   render() {
     const multipleScreens = !this.who || !this.when || !this.what
@@ -37,7 +52,38 @@ export class SlackReminderAction {
       <bearer-dropdown-button btnProps={btnProps} opened={true}>
         <bearer-navigator>
           <bearer-navigator-auth-screen />
-          <bearer-navigator-screen navigationTitle="Who to remind?" renderFunc={() => <who-selector />} name="who" />
+          {!this.who && (
+            <bearer-navigator-screen
+              navigationTitle="Who to remind?"
+              renderFunc={({}) => <who-selector />}
+              name="who"
+            />
+          )}
+          {!this.what && (
+            <bearer-navigator-screen
+              navigationTitle="What to remind?"
+              renderFunc={({ next }) => <what-selector next={next} />}
+              name="what"
+            />
+          )}
+          {!this.when && (
+            <bearer-navigator-screen
+              navigationTitle="When to remind?"
+              renderFunc={({ next }) => <when-selector next={next} />}
+              name="when"
+            />
+          )}
+          <bearer-navigator-screen
+            navigationTitle="Creating reminder"
+            renderFunc={({ data }) =>
+              data && (
+                <create-reminder
+                  intent={this.remindMeFromScreen(data)}
+                  data={{ who: this.who, when: this.when, what: this.what, ...data }}
+                />
+              )
+            }
+          />
         </bearer-navigator>
       </bearer-dropdown-button>
     )
