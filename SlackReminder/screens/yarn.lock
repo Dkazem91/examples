@@ -16,9 +16,9 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@bearer/core@0.13.3", "@bearer/core@^0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.13.3.tgz#c8e5ac7dc97ea19789629a2a1e0b957db4e3ba1e"
+"@bearer/core@0.14.0", "@bearer/core@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.14.0.tgz#86a602d2b79ef5dc4044ea8cae659d25987b11be"
   dependencies:
     "@stencil/core" "0.10.2"
     babel-plugin-inline-dotenv "^1.1.2"
@@ -30,11 +30,11 @@
     rollup-plugin-replace "^2.0.0"
     typescript "^2.9.2"
 
-"@bearer/ui@0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.13.3.tgz#f148b1e6d67269f5800c20707d77953cf395f61f"
+"@bearer/ui@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.14.0.tgz#33f0404ff25e5f5248c5b0c69173e93bf0264b5b"
   dependencies:
-    "@bearer/core" "^0.13.3"
+    "@bearer/core" "^0.14.0"
     "@stencil/core" "0.10.2"
     "@stencil/redux" "^0.0.4"
     "@stencil/sass" "^0.0.5"

@@ -18,8 +18,8 @@
     "test.watch": "jest --watch --no-cache"
   },
   "dependencies": {
-    "@bearer/core": "0.13.3",
-    "@bearer/ui": "0.13.3"
+    "@bearer/core": "0.14.0",
+    "@bearer/ui": "0.14.0"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
