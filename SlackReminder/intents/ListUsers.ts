@@ -11,16 +11,17 @@ export default class ListUsersIntent {
       .then(response => {
         if (response.data.ok) {
           callback({
-            collection: response.data.users.map(({ id, name }) => ({ id, name }))
+            collection: response.data.members.map(({ id, name }) => ({ id, name }))
           })
         } else {
           callback({ error: 'Error while fetching users', data: response.data })
         }
       })
-      .catch(e =>
+      .catch(e => {
+        console.log('[BEARER]', 'e', e)
         callback({
           error: e.toString()
         })
-      )
+      })
   }
 }
