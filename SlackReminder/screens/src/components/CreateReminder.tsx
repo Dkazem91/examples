@@ -1,4 +1,4 @@
-import { Component, Prop, Event, EventEmitter } from '@bearer/core'
+import { Component, Prop } from '@bearer/core'
 import { State } from '../../node_modules/@stencil/core'
 
 @Component({
