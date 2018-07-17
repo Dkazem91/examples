@@ -11,16 +11,22 @@ export class CreateReminder {
   @Prop() intent: Promise<any>
   @Prop() next: () => void
   @Prop() data: any
+  @State() created: boolean = false
 
   componentDidLoad() {
-    this.intent.then(this.next)
+    this.intent.then(this.next).then(() => {
+      this.created = true
+    })
   }
 
   render() {
+    if (this.created) {
+      return <bearer-alert kind="info">Reminder Created</bearer-alert>
+    }
     return (
       <div class="root">
         <p>
-          For: {this.data['who']}
+          For: {this.data['who'] || 'me'}
           <br />
           What: {this.data['what']}
           <br />
