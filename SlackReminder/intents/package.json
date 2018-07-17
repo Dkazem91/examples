@@ -4,11 +4,11 @@
   "description": "SlackReminder intents",
   "main": "index.js",
   "dependencies": {
-    "@bearer/intents": "latest",
+    "@bearer/intents": "0.16.4",
     "axios": "^0.18.0"
   },
   "devDependencies": {
-    "@bearer/bearer-cli": "latest",
+    "@bearer/bearer-cli": "0.16.4",
     "@types/node": "latest"
   },
   "license": "MIT"

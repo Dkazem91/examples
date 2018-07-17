@@ -37,8 +37,8 @@ export class SlackReminderAction {
 
   remindMeFromScreen = ({ who, what, when }): Promise<any> => {
     return this.perform({
-      when,
-      what,
+      when: this.when || when,
+      what: this.what || what,
       who: this.who || who.id
     })
   }
@@ -49,7 +49,7 @@ export class SlackReminderAction {
     return !multipleScreens ? (
       <bearer-button onClick={this.remindMe} kind="primary" content={this.text} />
     ) : (
-      <bearer-dropdown-button btnProps={btnProps} opened={true}>
+      <bearer-dropdown-button innerListener="d" btnProps={btnProps}>
         <bearer-navigator>
           <bearer-navigator-auth-screen />
           {!this.who && (
@@ -75,9 +75,10 @@ export class SlackReminderAction {
           )}
           <bearer-navigator-screen
             navigationTitle="Creating reminder"
-            renderFunc={({ data }) =>
+            renderFunc={({ data, next }) =>
               data && (
                 <create-reminder
+                  next={next}
                   intent={this.remindMeFromScreen(data)}
                   data={{ who: this.who, when: this.when, what: this.what, ...data }}
                 />

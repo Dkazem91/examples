@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Intent, BearerFetch, Element } from '@bearer/core'
+import { Component, Intent, BearerFetch, Element } from '@bearer/core'
 import { State } from '../../node_modules/@stencil/core'
 
 @Component({
@@ -11,8 +11,6 @@ export class WhoWhenSelector {
   @Intent('ListChannels') channelsFetch: BearerFetch
   @Intent('ListUsers') usersFetch: BearerFetch
   @Element() el: HTMLElement
-
-  @Event() stepCompleted: EventEmitter
 
   get fetcher(): BearerFetch {
     console.log('[BEARER]', 'kind', this.kind)
