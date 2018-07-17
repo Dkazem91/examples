@@ -1,4 +1,4 @@
-import { Component, Prop } from '@bearer/core'
+import { Component, Prop, Event, EventEmitter } from '@bearer/core'
 import { State } from '../../node_modules/@stencil/core'
 
 @Component({
@@ -9,17 +9,24 @@ import { State } from '../../node_modules/@stencil/core'
 export class CreateReminder {
   @State() loading: boolean = true
   @Prop() intent: Promise<any>
+  @Prop() next: () => void
   @Prop() data: any
 
   componentDidLoad() {
-    this.intent.then(console.log)
+    this.intent.then(this.next)
   }
 
   render() {
     return (
       <div class="root">
+        <p>
+          For: {this.data['who']}
+          <br />
+          What: {this.data['what']}
+          <br />
+          When: {this.data['when']}
+        </p>
         <bearer-loading />
-        {JSON.stringify(this.data)}
       </div>
     )
   }
