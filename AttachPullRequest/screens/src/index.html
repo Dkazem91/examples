@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>AttachPullRequest scenario</title>
+  <script src="/build/attach-pull-request.js"></script>
+  <style>
+    body {
+      padding: 50px;
+    }
+
+    hr {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Setup component</h1>
+  <attach-pull-request-setup>
+  </attach-pull-request-setup>
+  <attach-pull-request-setup-display>
+  </attach-pull-request-setup-display>
+  <hr />
+  <h1>Action component</h1>
+  <attach-pull-request setup-id="CHANGE_ME">
+  </attach-pull-request>
+  <hr />
+  <h1>Display component</h1>
+  <attach-pull-request-display setup-id="CHANGE_ME">
+  </attach-pull-request-display>
+</body>
+
+</html>
