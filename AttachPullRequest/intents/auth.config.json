@@ -1,11 +1,15 @@
 {
-  "authorizationURL": "https://example.com/authorizationUrl",
-  "tokenURL": "https://example.com/tokenUrl",
+  "authorizationURL": "https://github.com/login/oauth/authorize",
+  "tokenURL": "https://github.com/login/oauth/access_token",
   "authType": "oauth2",
   "tokenParams": {},
-  "authorizationParams": {},
+  "authorizationParams": {
+    "access_type": "offline",
+    "consent": true
+  },
   "config": {
-    "scope": []
+    "accessType": "offline",
+    "scope": ["repo", "user:email"]
   },
   "setupScreens": [
     {
@@ -19,6 +23,5 @@
       "controlName": "clientSecret"
     }
   ],
-  "configScreens": [
-  ]
+  "configScreens": []
 }
