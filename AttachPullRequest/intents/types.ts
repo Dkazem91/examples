@@ -3,9 +3,5 @@ export type ScenarioState = {
 }
 export type PullRequest = {
   number: number
-  base: {
-    repo: {
-      full_name: string
-    }
-  }
+  fullName: string
 }
