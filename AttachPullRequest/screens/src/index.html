@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>AttachPullRequest scenario</title>
-  <script src="/build/attach-pull-request.js"></script>
   <style>
     body {
       padding: 50px;
@@ -15,6 +14,12 @@
       margin: 20px 0;
     }
   </style>
+  <script>
+    window.BEARER_CONFIG = {
+      integrationHost: 'https://int.staging.bearer.sh/'
+    }
+  </script>
+  <script src="/build/attach-pull-request.js"></script>
 </head>
 
 <body>
@@ -25,11 +30,11 @@
   </attach-pull-request-setup-display>
   <hr />
   <h1>Action component</h1>
-  <attach-pull-request setup-id="CHANGE_ME">
+  <attach-pull-request setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9">
   </attach-pull-request>
   <hr />
   <h1>Display component</h1>
-  <attach-pull-request-display setup-id="CHANGE_ME">
+  <attach-pull-request-display setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9">
   </attach-pull-request-display>
 </body>
 

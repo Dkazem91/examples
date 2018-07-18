@@ -30,9 +30,9 @@
     rollup-plugin-replace "^2.0.0"
     typescript "^2.9.2"
 
-"@bearer/ui@latest":
-  version "0.15.5"
-  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.15.5.tgz#899c06bb9d4355566234ae7bff92212ef96e0d00"
+"@bearer/ui@0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.17.1.tgz#37281f9449cfeaf403741f6122c73d9f285eae29"
   dependencies:
     "@bearer/core" "^0.15.5"
     "@stencil/core" "0.10.2"
