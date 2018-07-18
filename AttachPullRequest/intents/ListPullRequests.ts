@@ -10,7 +10,7 @@ type TCallbackParams = {
 }
 
 export default class ListPullRequestsIntent {
-  static intentName: string = 'listPullRequests'
+  static intentName: string = 'ListPullRequests'
   static intentType: any = GetCollection
 
   static action(context: TContext, params: TParams, callback: (params: TCallbackParams) => void) {

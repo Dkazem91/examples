@@ -14,7 +14,7 @@ export default class ListRepositoriesIntent {
         callback({ collection: response.data })
       })
       .catch(e => {
-        callback({ collection: [] })
+        callback({ error: e.response.data })
       })
   }
 }
