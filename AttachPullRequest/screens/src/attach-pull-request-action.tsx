@@ -35,11 +35,10 @@ export class AttachPullRequestAction {
     this.context.unsubscribe(this)
   }
 
-  attachPullRequest = (data): Promise<any> => {
-    return this.fetcher({ body: data }).then(
+  attachPullRequest = (data): Promise<any> =>
+    this.fetcher({ body: data }).then(
       () => (this.attachedPullRequests = [...this.attachedPullRequests, data.pullRequest])
     )
-  }
 
   render() {
     return (

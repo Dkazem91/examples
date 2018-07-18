@@ -16,27 +16,25 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@bearer/core@^0.15.5", "@bearer/core@latest":
-  version "0.15.5"
-  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.15.5.tgz#03461d59dabdfb316c7f73a4223fd0296d9c1ca1"
+"@bearer/core@0.17.5", "@bearer/core@^0.17.5":
+  version "0.17.5"
+  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.17.5.tgz#2542e38909dc2f93e88237942a30769646408fe2"
   dependencies:
     "@stencil/core" "0.10.2"
     babel-plugin-inline-dotenv "^1.1.2"
     fbemitter "^2.1.1"
     post-robot "^8.0.26"
     rc "^1.2.8"
-    redux "^4.0.0"
     rollup-plugin-env "^0.21.4"
     rollup-plugin-replace "^2.0.0"
     typescript "^2.9.2"
 
-"@bearer/ui@0.17.1":
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.17.1.tgz#37281f9449cfeaf403741f6122c73d9f285eae29"
+"@bearer/ui@0.17.5":
+  version "0.17.5"
+  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.17.5.tgz#a6c16de350de794b144475f308bf44671fff4e81"
   dependencies:
-    "@bearer/core" "^0.15.5"
+    "@bearer/core" "^0.17.5"
     "@stencil/core" "0.10.2"
-    "@stencil/redux" "^0.0.4"
     "@stencil/sass" "^0.0.5"
     bootstrap "^4.1.0"
 
@@ -71,12 +69,6 @@
     ecstatic "^2.2.1"
     opn "^5.1.0"
     tiny-lr "^1.0.5"
-
-"@stencil/redux@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@stencil/redux/-/redux-0.0.4.tgz#eb4a003b4c48b431206fea272df06d941a6736a5"
-  dependencies:
-    path-to-regexp "^1.7.0"
 
 "@stencil/sass@^0.0.5":
   version "0.0.5"
@@ -2843,7 +2835,7 @@ longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0:
+loose-envify@^1.0.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
@@ -3436,12 +3428,6 @@ path-parse@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
 
-path-to-regexp@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
-  dependencies:
-    isarray "0.0.1"
-
 path-type@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-1.1.0.tgz#59c44f7ee491da704da415da5a4070ba4f8fe441"
@@ -3697,13 +3683,6 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
-
-redux@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.0.tgz#aa698a92b729315d22b34a0553d7e6533555cc03"
-  dependencies:
-    loose-envify "^1.1.0"
-    symbol-observable "^1.2.0"
 
 regenerator-runtime@^0.11.0:
   version "0.11.1"
@@ -4318,10 +4297,6 @@ supports-color@^5.3.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
   dependencies:
     has-flag "^3.0.0"
-
-symbol-observable@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
 symbol-tree@^3.2.1, symbol-tree@^3.2.2:
   version "3.2.2"
