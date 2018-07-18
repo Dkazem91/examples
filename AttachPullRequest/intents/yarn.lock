@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@bearer/bearer-cli@latest":
-  version "0.16.4"
-  resolved "https://registry.yarnpkg.com/@bearer/bearer-cli/-/bearer-cli-0.16.4.tgz#14514c4d15090239f5164b54e819a4bca3e10620"
+"@bearer/bearer-cli@0.17.3":
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/@bearer/bearer-cli/-/bearer-cli-0.17.3.tgz#9832b419f889f2e5197a6688b4e45efda701e8dc"
   dependencies:
-    "@bearer/intents" "^0.16.4"
+    "@bearer/intents" "^0.17.2"
     "@bearer/templates" "^0.16.3"
-    "@bearer/transpiler" "^0.15.2"
+    "@bearer/transpiler" "^0.17.3"
     "@koa/cors" "^2.2.2"
     amazon-cognito-identity-js "^2.0.3"
     archiver "^2.1.1"
@@ -49,9 +49,9 @@
     uuid "^3.2.1"
     webpack "^4.12.0"
 
-"@bearer/intents@^0.16.4", "@bearer/intents@latest":
-  version "0.16.4"
-  resolved "https://registry.yarnpkg.com/@bearer/intents/-/intents-0.16.4.tgz#feb3a63d6a60d8879072a653eaa36234f2c7f2ce"
+"@bearer/intents@0.17.2", "@bearer/intents@^0.17.2":
+  version "0.17.2"
+  resolved "https://registry.yarnpkg.com/@bearer/intents/-/intents-0.17.2.tgz#746e99e30b2c12338e4787d40a3f5b1bbb405021"
   dependencies:
     axios "^0.18.0"
     typescript "^2.9.2"
@@ -62,9 +62,9 @@
   dependencies:
     typescript "^2.9.2"
 
-"@bearer/transpiler@^0.15.2":
-  version "0.15.2"
-  resolved "https://registry.yarnpkg.com/@bearer/transpiler/-/transpiler-0.15.2.tgz#d03b4c4d21047cab5c9d1e8bcef95fd70ab5a413"
+"@bearer/transpiler@^0.17.3":
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/@bearer/transpiler/-/transpiler-0.17.3.tgz#16af0f8ec4673546af8e33620e56e3ebeee699fc"
   dependencies:
     async-foreach "^0.1.3"
     fs-extra "^6.0.1"

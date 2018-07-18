@@ -4,11 +4,11 @@
   "description": "AttachPullRequest intents",
   "main": "index.js",
   "dependencies": {
-    "@bearer/intents": "latest",
+    "@bearer/intents": "0.17.2",
     "axios": "^0.18.0"
   },
   "devDependencies": {
-    "@bearer/bearer-cli": "latest",
+    "@bearer/bearer-cli": "0.17.3",
     "@types/node": "latest"
   },
   "license": "MIT"

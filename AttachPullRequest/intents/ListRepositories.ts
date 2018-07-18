@@ -8,7 +8,7 @@ export default class ListRepositoriesIntent {
   static action(context: TContext, params: any, callback: (params: any) => void) {
     CLIENT.get('user/repos', {
       params: { ...params, per_page: 10 },
-      headers: headersFor(context.token)
+      headers: headersFor(context.accessToken)
     })
       .then(response => {
         callback({ collection: response.data })
