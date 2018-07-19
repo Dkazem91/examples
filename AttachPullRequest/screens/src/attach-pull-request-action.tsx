@@ -3,7 +3,7 @@
 
 */
 
-import { Component, State, Prop, Watch, SaveStateIntent } from '@bearer/core'
+import { Component, SaveStateIntent, BearerState } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({
@@ -13,27 +13,7 @@ import '@bearer/ui'
 })
 export class AttachPullRequestAction {
   @SaveStateIntent() fetcher: any
-  @Prop({ context: 'bearer' })
-  context: any
-  @State() attachedPullRequests: Array<any> = []
-
-  @Watch('attachedPullRequests')
-  changeRepo(newValue: any) {
-    console.log('[BEARER]', 'attachedPullRequests updated')
-    this.context.update('attachedPullRequests', newValue)
-  }
-
-  updateFromState = state => {
-    this.attachedPullRequests = state['attachedPullRequests']
-  }
-
-  componentWillLoad() {
-    this.context.subscribe(this)
-  }
-
-  componentDidUnload() {
-    this.context.unsubscribe(this)
-  }
+  @BearerState() attachedPullRequests: Array<any> = []
 
   attachPullRequest = (data): Promise<any> =>
     this.fetcher({ body: data }).then(

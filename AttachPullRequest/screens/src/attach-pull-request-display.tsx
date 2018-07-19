@@ -3,7 +3,7 @@
   Its responsibility is to retrieve the scenario state from a previous action
   of a user.
 */
-import { Component, State, Prop, Watch, RetrieveStateIntent, IntentType, BearerFetch } from '@bearer/core'
+import { Component, RetrieveStateIntent, IntentType, BearerFetch, BearerState } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({
@@ -13,19 +13,11 @@ import '@bearer/ui'
 })
 export class AttachPullRequestDisplay {
   @RetrieveStateIntent(IntentType.GetCollection) fetcher: BearerFetch
-  @Prop({ context: 'bearer' })
-  context: any
-  @State() attachedPullRequests: Array<any> = []
 
-  @Watch('attachedPullRequests')
-  changeRepo(newValue: any) {
-    console.log('[BEARER]', 'attachedPullRequests updated')
-    this.context.update('attachedPullRequests', newValue)
-  }
-
-  updateFromState = state => {
-    this.attachedPullRequests = state['attachedPullRequests']
-  }
+  @BearerState({
+    statePropName: 'attachedPullRequests'
+  })
+  prs: Array<any> = []
 
   componentDidLoad() {
     this.fetcher().then(payload => {
@@ -33,23 +25,15 @@ export class AttachPullRequestDisplay {
     })
   }
 
-  componentWillLoad() {
-    this.context.subscribe(this)
-  }
-
-  componentDidUnload() {
-    this.context.unsubscribe(this)
-  }
-
   get hasAttachedPullRequest(): boolean {
-    return Boolean(this.attachedPullRequests.length)
+    return Boolean(this.prs.length)
   }
 
   render() {
     const hasPrs = this.hasAttachedPullRequest
     return (
       <bearer-alert kind={hasPrs ? 'info' : 'secondary'}>
-        {hasPrs && <ul>{this.attachedPullRequests.map(pr => <li>{pr.title}</li>)}</ul>}
+        {hasPrs && <ul>{this.prs.map(pr => <li>{pr.title}</li>)}</ul>}
         {!hasPrs && 'No Pull Request attached'}
       </bearer-alert>
     )
