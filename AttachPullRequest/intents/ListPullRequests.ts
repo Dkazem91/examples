@@ -16,7 +16,7 @@ export default class ListPullRequestsIntent {
   static action(context: TContext, params: TParams, callback: (params: TCallbackParams) => void) {
     CLIENT.get(`/repos/${params.fullName}/pulls`, {
       params: { ...params, per_page: 10 },
-      headers: headersFor(context.accessToken)
+      headers: headersFor(context.authAccess.accessToken)
     })
       .then(response => {
         callback({ collection: response.data })
