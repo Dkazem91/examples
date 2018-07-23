@@ -3,7 +3,7 @@
   Its responsibility is to retrieve the scenario state from a previous action
   of a user.
 */
-import { Component, RetrieveStateIntent, IntentType, BearerFetch, BearerState } from '@bearer/core'
+import { Component, RetrieveStateIntent, IntentType, BearerFetch, BearerState, Prop } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({
@@ -12,6 +12,7 @@ import '@bearer/ui'
   shadow: true
 })
 export class AttachPullRequestDisplay {
+  @Prop() referenceId: string
   @RetrieveStateIntent(IntentType.GetCollection) fetcher: BearerFetch
 
   @BearerState({
