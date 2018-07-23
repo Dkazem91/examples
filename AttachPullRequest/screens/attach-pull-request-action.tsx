@@ -3,7 +3,7 @@
 
 */
 
-import { Component, SaveStateIntent, BearerState } from '@bearer/core'
+import { Component, SaveStateIntent, BearerState, Prop } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({
@@ -22,27 +22,25 @@ export class AttachPullRequestAction {
 
   render() {
     return (
-      <div>
-        <bearer-navigator direction="right" btnProps={{ content: 'Attach Pull Request', kind: 'primary' }}>
-          <bearer-navigator-auth-screen />
-          <bearer-navigator-screen
-            renderFunc={() => <list-repositories />}
-            name="repository"
-            navigationTitle="Pick Repository"
-          />
-          <bearer-navigator-screen
-            renderFunc={({ data }) => <list-pull-requests {...data} />}
-            name="pullRequest"
-            navigationTitle={data => data.repository.full_name}
-          />
-          <bearer-navigator-screen
-            renderFunc={({ complete, data }) => (
-              <attach-pull-request-screen intent={this.attachPullRequest(data)} next={complete} />
-            )}
-            navigationTitle="Attaching pull request"
-          />
-        </bearer-navigator>
-      </div>
+      <bearer-navigator direction="right" btnProps={{ content: 'Attach Pull Request', kind: 'primary' }}>
+        <bearer-navigator-auth-screen />
+        <bearer-navigator-screen
+          renderFunc={() => <list-repositories />}
+          name="repository"
+          navigationTitle="Pick Repository"
+        />
+        <bearer-navigator-screen
+          renderFunc={({ data }) => <list-pull-requests {...data} />}
+          name="pullRequest"
+          navigationTitle={data => data.repository.full_name}
+        />
+        <bearer-navigator-screen
+          renderFunc={({ complete, data }) => (
+            <attach-pull-request-screen intent={this.attachPullRequest(data)} next={complete} />
+          )}
+          navigationTitle="Attaching pull request"
+        />
+      </bearer-navigator>
     )
   }
 }
