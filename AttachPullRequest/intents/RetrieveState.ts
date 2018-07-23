@@ -20,7 +20,7 @@ export default class RetrieveStateIntent {
         .catch(error => ({ error: error.response }))
 
     Promise.all((state.pullRequests || []).map(pullRequestFetcher)).then(pullRequests => {
-      callback({ collection: pullRequests.filter(pr => pr.id) })
+      callback(pullRequests.filter(pr => pr.id))
     })
   }
 }

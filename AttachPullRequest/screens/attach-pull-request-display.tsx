@@ -22,9 +22,9 @@ export class AttachPullRequestDisplay {
 
   componentDidLoad() {
     this.fetcher()
-      .then(payload => {
+      .then(({ items }) => {
         this.loading = false
-        this.prs = payload.items
+        this.prs = items
       })
       .catch(() => {
         this.loading = false
