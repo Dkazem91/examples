@@ -1,7 +1,7 @@
 import { SaveState, TContext, STATE_CLIENT } from '@bearer/intents'
 import CLIENT from './client'
 // temporary
-// STATE_CLIENT.defaults.baseURL = 'https://int.bearer.sh/'
+STATE_CLIENT.defaults.baseURL = 'https://int.staging.bearer.sh/'
 
 type TBody = {
   what: string

@@ -14,7 +14,7 @@ export default class ListUsersIntent {
             collection: response.data.members.map(({ id, name }) => ({ id, name }))
           })
         } else {
-          callback({ error: 'Error while fetching users', data: response.data })
+          callback({ error: `Error while fetching users ${JSON.stringify(response.data)}` })
         }
       })
       .catch(e => {

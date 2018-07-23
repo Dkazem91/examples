@@ -14,7 +14,7 @@ export default class ListChannelsIntent {
             collection: response.data.channels.map(({ id, name }) => ({ id, name }))
           })
         } else {
-          callback({ error: 'Error while fetching channels', data: response.data })
+          callback({ error: `Error while fetching channels ${JSON.stringify(response.data)}` })
         }
       })
       .catch(e =>
