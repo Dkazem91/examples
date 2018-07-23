@@ -1,6 +1,6 @@
 import { RetrieveState } from '@bearer/intents'
 import { PullRequest, ScenarioState } from './types'
-import { CLIENT } from './client'
+import { CLIENT, headersFor } from './client'
 
 export default class RetrieveStateIntent {
   static intentName: string = 'RetrieveState'
@@ -11,9 +11,16 @@ export default class RetrieveStateIntent {
       .then(response => response.data)
       .catch(error => null)
 
-  static action(_token, _params, state: ScenarioState, callback: (state: any) => void) {
-    Promise.all((state.pullRequests || []).map(this.pullRequestFetcher)).then(pullRequests => {
-      callback({ collection: pullRequests.filter(pr => pr) })
+  static action(context, _params, state: ScenarioState, callback: (state: any) => void) {
+    const pullRequestFetcher = (savedPR: PullRequest): Promise<any> =>
+      CLIENT.get(`repos/${savedPR.fullName}/pulls/${savedPR.number}`, {
+        headers: headersFor(context.authAccess.accessToken)
+      })
+        .then(response => response.data)
+        .catch(error => ({ error: error.response }))
+
+    Promise.all((state.pullRequests || []).map(pullRequestFetcher)).then(pullRequests => {
+      callback({ collection: pullRequests.filter(pr => pr.id) })
     })
   }
 }

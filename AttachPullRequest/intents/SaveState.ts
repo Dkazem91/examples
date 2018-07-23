@@ -1,7 +1,7 @@
 import { SaveState, STATE_CLIENT } from '@bearer/intents'
 import { PullRequest, ScenarioState } from './types'
 // temporary
-STATE_CLIENT.defaults.baseURL = 'https://int.bearer.sh/'
+// STATE_CLIENT.defaults.baseURL = 'https://int.bearer.sh/'
 
 export default class SaveStateIntent {
   static intentName: string = 'SaveState'

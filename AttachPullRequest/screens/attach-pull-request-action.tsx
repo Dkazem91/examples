@@ -12,7 +12,6 @@ import '@bearer/ui'
   shadow: true
 })
 export class AttachPullRequestAction {
-  @Prop() referenceId: string
   @SaveStateIntent() fetcher: any
   @BearerState() attachedPullRequests: Array<any> = []
 
