@@ -1,18 +1,15 @@
 import axios from 'axios'
 
-export const CLIENT = axios.create({
-  baseURL: 'https://slack.com/api/',
-  timeout: 5000,
-  headers: {
+export default function(token: string) {
+  const headers = {
     Accept: 'application/json',
-    'User-Agent': 'Bearer'
+    'User-Agent': 'Bearer',
+    Authorization: `Bearer ${token}`
   }
-})
 
-export function headersFor(token) {
-  return {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }
+  return axios.create({
+    baseURL: 'https://slack.com/api/',
+    timeout: 2700,
+    headers
+  })
 }
