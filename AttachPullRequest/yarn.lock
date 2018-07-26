@@ -16,13 +16,13 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@bearer/bearer-cli@0.23.0":
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/@bearer/bearer-cli/-/bearer-cli-0.23.0.tgz#4651def35907c33e739c5133abbe48dcb5ab408f"
+"@bearer/bearer-cli@0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@bearer/bearer-cli/-/bearer-cli-0.24.1.tgz#96160cc4e73fabe82c79729b963bd142db9810c2"
   dependencies:
-    "@bearer/intents" "^0.23.0"
-    "@bearer/templates" "^0.22.0"
-    "@bearer/transpiler" "^0.23.0"
+    "@bearer/intents" "^0.24.0"
+    "@bearer/templates" "^0.24.0"
+    "@bearer/transpiler" "^0.24.0"
     "@koa/cors" "^2.2.2"
     amazon-cognito-identity-js "^2.0.3"
     archiver "^2.1.1"
@@ -45,6 +45,7 @@
     knex "^0.15.2"
     koa "^2.5.2"
     koa-bodyparser "^4.2.1"
+    koa-cookie "^1.0.0"
     koa-logger "^3.2.0"
     koa-respond "^1.0.1"
     koa-router "^7.4.0"
@@ -62,12 +63,12 @@
     unzip "^0.1.11"
     unzip-stream "^0.3.0"
     update-notifier "^2.5.0"
-    uuid "^3.2.1"
+    uuid "^3.3.2"
     webpack "^4.12.0"
 
-"@bearer/core@0.23.0", "@bearer/core@^0.23.0":
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.23.0.tgz#1012db39dfc5dad31b6d1cd249748fa5e7239be9"
+"@bearer/core@0.24.0", "@bearer/core@^0.24.0":
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.24.0.tgz#5328f417b596ada9a49a102cfd614a8db31fc4e9"
   dependencies:
     "@stencil/core" "^0.10.7"
     babel-plugin-inline-dotenv "^1.1.2"
@@ -78,32 +79,32 @@
     rollup-plugin-replace "^2.0.0"
     typescript "^2.9.2"
 
-"@bearer/intents@0.23.0", "@bearer/intents@^0.23.0":
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/@bearer/intents/-/intents-0.23.0.tgz#271a77fa11abf065a2e255df2a89e461fe5e7c99"
+"@bearer/intents@0.24.0", "@bearer/intents@^0.24.0":
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/@bearer/intents/-/intents-0.24.0.tgz#8481fdfb6032055ac251686cd5de8540d4ad0af3"
   dependencies:
     axios "^0.18.0"
     typescript "^2.9.2"
 
-"@bearer/templates@^0.22.0":
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/@bearer/templates/-/templates-0.22.0.tgz#9f50a62dfa8193dda47e84db6020b634080c1183"
+"@bearer/templates@^0.24.0":
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/@bearer/templates/-/templates-0.24.0.tgz#50e9fcbc2710f6a1a1e2914cd92544f546e10018"
   dependencies:
     typescript "^2.9.2"
 
-"@bearer/transpiler@^0.23.0":
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/@bearer/transpiler/-/transpiler-0.23.0.tgz#1bb9847927c549d52e3984560f4c97f3a8c1777c"
+"@bearer/transpiler@^0.24.0":
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/@bearer/transpiler/-/transpiler-0.24.0.tgz#9241eb803f0927288d1e601811a05611b588c0fc"
   dependencies:
     async-foreach "^0.1.3"
     fs-extra "^6.0.1"
     typescript "^2.9.2"
 
-"@bearer/ui@0.23.0":
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.23.0.tgz#36754ebaab7bd01f96bdbf3f0cdc1ca9b9ddc2e2"
+"@bearer/ui@0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.24.1.tgz#4c9bf44487d739987e11b67627430c4f14d52fd0"
   dependencies:
-    "@bearer/core" "^0.23.0"
+    "@bearer/core" "^0.24.0"
     "@stencil/core" "^0.10.7"
     "@stencil/sass" "^0.0.5"
     bootstrap "^4.1.0"
@@ -184,9 +185,13 @@
   version "23.3.0"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.0.tgz#5dd70033b616a6228042244ebd992f6426808810"
 
-"@types/node@*", "@types/node@latest":
+"@types/node@*":
   version "10.5.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.2.tgz#f19f05314d5421fe37e74153254201a7bf00a707"
+
+"@types/node@10.5.3":
+  version "10.5.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.3.tgz#5bcfaf088ad17894232012877669634c06b20cc5"
 
 "@webassemblyjs/ast@1.5.13":
   version "1.5.13"
@@ -3988,6 +3993,10 @@ koa-convert@^1.2.0:
     co "^4.6.0"
     koa-compose "^3.0.0"
 
+koa-cookie@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/koa-cookie/-/koa-cookie-1.0.0.tgz#7c79723dd03b97abcfe430028b700bd47a36dafb"
+
 koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
@@ -6786,7 +6795,7 @@ uuid@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
-uuid@^3.0.0, uuid@^3.1.0, uuid@^3.2.1, uuid@^3.3.2:
+uuid@^3.0.0, uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 
