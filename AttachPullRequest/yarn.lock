@@ -16,9 +16,9 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@bearer/bearer-cli@0.24.1":
-  version "0.24.1"
-  resolved "https://registry.yarnpkg.com/@bearer/bearer-cli/-/bearer-cli-0.24.1.tgz#96160cc4e73fabe82c79729b963bd142db9810c2"
+"@bearer/bearer-cli@0.25.0":
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/@bearer/bearer-cli/-/bearer-cli-0.25.0.tgz#266c3a2ae8ebf533feef6810c254c9f0c846d05d"
   dependencies:
     "@bearer/intents" "^0.24.0"
     "@bearer/templates" "^0.24.0"
@@ -66,11 +66,11 @@
     uuid "^3.3.2"
     webpack "^4.12.0"
 
-"@bearer/core@0.24.0", "@bearer/core@^0.24.0":
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.24.0.tgz#5328f417b596ada9a49a102cfd614a8db31fc4e9"
+"@bearer/core@0.25.0", "@bearer/core@^0.25.0":
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/@bearer/core/-/core-0.25.0.tgz#9cc4dc94c1a377cc2328decfbc051a354d9c7834"
   dependencies:
-    "@stencil/core" "^0.10.7"
+    "@stencil/core" "^0.10.9"
     babel-plugin-inline-dotenv "^1.1.2"
     fbemitter "^2.1.1"
     post-robot "^8.0.26"
@@ -100,12 +100,12 @@
     fs-extra "^6.0.1"
     typescript "^2.9.2"
 
-"@bearer/ui@0.24.1":
-  version "0.24.1"
-  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.24.1.tgz#4c9bf44487d739987e11b67627430c4f14d52fd0"
+"@bearer/ui@0.25.0":
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/@bearer/ui/-/ui-0.25.0.tgz#d176f48189e525b0ba62ad1f3558808729d5cfb6"
   dependencies:
-    "@bearer/core" "^0.24.0"
-    "@stencil/core" "^0.10.7"
+    "@bearer/core" "^0.25.0"
+    "@stencil/core" "^0.10.9"
     "@stencil/sass" "^0.0.5"
     bootstrap "^4.1.0"
 
@@ -141,9 +141,9 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.0.tgz#50c1e2260ac0ed9439a181de3725a0168d59c48a"
 
-"@stencil/core@^0.10.7":
-  version "0.10.7"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-0.10.7.tgz#66a98c428e43bcbf262914fc50bb374ccbbdb1a4"
+"@stencil/core@^0.10.9":
+  version "0.10.9"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-0.10.9.tgz#ab6859013a31b1d067cfca708038a7f7338b1c07"
   dependencies:
     chokidar "2.0.3"
     jsdom "11.5.1"

@@ -15,14 +15,24 @@ export class AttachPullRequestAction {
   @SaveStateIntent() fetcher: any
   @BearerState() attachedPullRequests: Array<any> = []
 
-  attachPullRequest = (data): Promise<any> =>
-    this.fetcher({ body: data }).then(
-      () => (this.attachedPullRequests = [...this.attachedPullRequests, data.pullRequest])
-    )
+  attachPullRequest = ({ data, complete }): void => {
+    this.fetcher({ body: data })
+      .then(() => {
+        this.attachedPullRequests = [...this.attachedPullRequests, data.pullRequest]
+        complete()
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 
   render() {
     return (
-      <bearer-navigator direction="right" btnProps={{ content: 'Attach Pull Request', kind: 'primary' }}>
+      <bearer-navigator
+        direction="right"
+        btnProps={{ content: 'Attach Pull Request', kind: 'primary' }}
+        complete={this.attachPullRequest}
+      >
         <bearer-navigator-auth-screen />
         <bearer-navigator-screen
           renderFunc={() => <list-repositories />}
@@ -33,12 +43,6 @@ export class AttachPullRequestAction {
           renderFunc={({ data }) => <list-pull-requests {...data} />}
           name="pullRequest"
           navigationTitle={data => data.repository.full_name}
-        />
-        <bearer-navigator-screen
-          renderFunc={({ complete, data }) => (
-            <attach-pull-request-screen intent={this.attachPullRequest(data)} next={complete} />
-          )}
-          navigationTitle="Attaching pull request"
         />
       </bearer-navigator>
     )
