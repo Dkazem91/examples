@@ -34,11 +34,9 @@ export class AttachPullRequestAction {
         complete={this.attachPullRequest}
       >
         <bearer-navigator-auth-screen />
-        <bearer-navigator-screen
-          renderFunc={() => <list-repositories />}
-          name="repository"
-          navigationTitle="Pick Repository"
-        />
+        <bearer-navigator-screen name="repository" navigationTitle="Pick Repository">
+          <list-repositories />
+        </bearer-navigator-screen>
         <bearer-navigator-screen
           renderFunc={({ data }) => <list-pull-requests {...data} />}
           name="pullRequest"
