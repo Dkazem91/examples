@@ -1,8 +1,6 @@
-import { SaveState, TContext, STATE_CLIENT } from '@bearer/intents'
+import { SaveState, Toauth2Context } from '@bearer/intents'
 import CLIENT from './client'
 // temporary
-STATE_CLIENT.defaults.baseURL = 'https://int.staging.bearer.sh/'
-
 type TBody = {
   what: string
   who?: string
@@ -15,7 +13,7 @@ export default class SaveStateIntent {
   static intentName: string = 'SaveState'
   static intentType: any = SaveState
 
-  static action(context: TContext, _params, body: TBody, state: any, callback: (any) => void): void {
+  static action(context: Toauth2Context, _params, body: TBody, _state: any, callback: (any) => void): void {
     const { what, who = ME, when } = body
     const request = CLIENT(context.authAccess.accessToken).post('reminders.add', {
       text: what,

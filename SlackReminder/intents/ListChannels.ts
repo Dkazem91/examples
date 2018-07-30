@@ -1,11 +1,11 @@
-import { GetCollection, TContext } from '@bearer/intents'
+import { GetCollection, Toauth2Context } from '@bearer/intents'
 import CLIENT from './client'
 
 export default class ListChannelsIntent {
   static intentName: string = 'ListChannels'
   static intentType: any = GetCollection
 
-  static action(context: TContext, params: any, callback: (params: any) => void) {
+  static action(context: Toauth2Context, params: any, callback: (params: any) => void) {
     const request = CLIENT(context.authAccess.accessToken).get('channels.list')
     request
       .then(response => {

@@ -10,7 +10,7 @@
     "accessType": "offline",
     "scope": ["reminders:write", "channels:read", "groups:read", "users:read"]
   },
-  "setupScreens": [
+  "setupViews": [
     { "label": "Client ID", "type": "text", "controlName": "clientID" },
     { "label": "Client Secret", "type": "password", "controlName": "clientSecret" }
   ]
