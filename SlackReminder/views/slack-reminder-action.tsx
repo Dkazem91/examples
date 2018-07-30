@@ -3,7 +3,7 @@
 
 */
 
-import { Component, SaveStateIntent, BearerFetch, Prop } from '@bearer/core'
+import { Component, SaveStateIntent, BearerFetch, Prop, State } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({
@@ -12,7 +12,7 @@ import '@bearer/ui'
 })
 export class SlackReminderAction {
   @SaveStateIntent() intent: BearerFetch
-
+  @State() reminded: boolean = false
   @Prop() text: string
   @Prop() what?: string
   @Prop() when?: string
@@ -25,6 +25,8 @@ export class SlackReminderAction {
         what,
         when
       }
+    }).then(() => {
+      this.reminded = true
     })
 
   remindMe = (): Promise<any> =>
@@ -42,16 +44,26 @@ export class SlackReminderAction {
     })
   }
 
+  complete = ({ data, complete }) =>
+    this.remindMeFromScreen(data)
+      .then(() => complete())
+      .catch(console.error)
+
   render() {
     const multipleScreens = !this.who || !this.when || !this.what
-    const btnProps: JSXElements.BearerButtonAttributes = { kind: 'primary', content: this.text || 'Remind me' }
+    const btnProps: JSXElements.BearerButtonAttributes = {
+      kind: this.reminded ? 'success' : 'primary',
+      content: this.text || 'Remind me'
+    }
     return !multipleScreens ? (
-      <bearer-button onClick={this.remindMe} kind="primary" content={this.text} />
+      <bearer-button onClick={this.remindMe} {...btnProps} content={this.text} />
     ) : (
-      <bearer-navigator btnProps={btnProps}>
+      <bearer-navigator btnProps={btnProps} complete={this.complete}>
         <bearer-navigator-auth-screen />
         {!this.who && (
-          <bearer-navigator-screen navigationTitle="Who to remind?" renderFunc={({}) => <who-selector />} name="who" />
+          <bearer-navigator-screen navigationTitle="Who to remind?" name="who">
+            <who-selector />
+          </bearer-navigator-screen>
         )}
         {!this.what && (
           <bearer-navigator-screen
@@ -67,18 +79,6 @@ export class SlackReminderAction {
             name="when"
           />
         )}
-        <bearer-navigator-screen
-          navigationTitle="Creating reminder"
-          renderFunc={({ data, next }: { data: any; next: any }) =>
-            data && (
-              <create-reminder
-                next={next}
-                intent={this.remindMeFromScreen(data)}
-                data={{ who: this.who, when: this.when, what: this.what, ...data }}
-              />
-            )
-          }
-        />
       </bearer-navigator>
     )
   }
