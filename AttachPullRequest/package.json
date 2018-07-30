@@ -18,18 +18,18 @@
     "test.watch": "jest --watch --no-cache"
   },
   "dependencies": {
-    "@bearer/core": "0.25.0",
-    "@bearer/intents": "0.24.0",
-    "@bearer/ui": "0.25.0",
+    "@bearer/core": "0.27.1",
+    "@bearer/intents": "0.27.3",
+    "@bearer/ui": "0.27.1",
     "axios": "^0.18.0"
   },
   "devDependencies": {
-    "@bearer/bearer-cli": "0.25.0",
+    "@bearer/bearer-cli": "0.27.3",
     "@stencil/dev-server": "latest",
     "@stencil/utils": "latest",
-    "@types/jest": "latest",
-    "@types/node": "10.5.3",
-    "jest": "latest"
+    "@types/jest": "23.3.1",
+    "@types/node": "10.5.4",
+    "jest": "23.4.2"
   },
   "license": "MIT",
   "jest": {

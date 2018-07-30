@@ -24,7 +24,9 @@ export class AttachPullRequestDisplay {
     this.fetcher()
       .then(({ items }) => {
         this.loading = false
-        this.prs = items
+        if (items) {
+          this.prs = items
+        }
       })
       .catch(() => {
         this.loading = false
