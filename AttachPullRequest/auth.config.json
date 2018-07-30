@@ -11,7 +11,7 @@
     "accessType": "offline",
     "scope": ["repo", "user:email"]
   },
-  "setupScreens": [
+  "setupViews": [
     {
       "type": "text",
       "label": "Client ID",
@@ -22,6 +22,5 @@
       "label": "Client Secret",
       "controlName": "clientSecret"
     }
-  ],
-  "configScreens": []
+  ]
 }
