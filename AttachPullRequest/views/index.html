@@ -43,8 +43,8 @@
   </attach-pull-request-display>
 
   <script>
-    document.querySelector('attach-pull-request').addEventListener('BearerStateSaved', (e) => {
-      console.log('[BEARER]', 'e', e)
+    document.querySelector('attach-pull-request').addEventListener('bearer:StateSaved', (e) => {
+      console.log('[BEARER]', 'StateSaved', e.detail)
       document.querySelector('#display').setAttribute('reference-id', e.detail.referenceId)
       localStorage.setItem('saved-reference-id', e.detail.referenceId)
     })
