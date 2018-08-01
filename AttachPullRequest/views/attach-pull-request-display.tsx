@@ -3,7 +3,7 @@
   Its responsibility is to retrieve the scenario state from a previous action
   of a user.
 */
-import { Component, RetrieveStateIntent, BearerFetch, BearerState, Prop, State } from '@bearer/core'
+import { Component, RetrieveStateIntent, BearerFetch, BearerState, State, Watch } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({
@@ -20,7 +20,14 @@ export class AttachPullRequestDisplay {
   })
   prs: Array<any> = []
 
+  @Watch('referenceId')
+  handler(changed) {
+    console.log('[BEARER]', 'changed', changed)
+    this.componentDidLoad()
+  }
   componentDidLoad() {
+    console.log('componentDidLoad')
+    this.loading = true
     this.fetcher()
       .then(({ items }) => {
         if (items) {

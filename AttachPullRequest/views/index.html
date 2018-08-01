@@ -32,12 +32,32 @@
   </attach-pull-request-setup-display>
   <hr />
   <h1>Action component</h1>
-  <attach-pull-request setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9">
+
+  <attach-pull-request id="action" setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9">
   </attach-pull-request>
   <hr />
+
   <h1>Display component</h1>
-  <attach-pull-request-display setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9">
+
+  <attach-pull-request-display id="display" setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9">
   </attach-pull-request-display>
+
+  <script>
+    document.querySelector('attach-pull-request').addEventListener('BearerStateSaved', (e) => {
+      console.log('[BEARER]', 'e', e)
+      document.querySelector('#display').setAttribute('reference-id', e.detail.referenceId)
+      localStorage.setItem('saved-reference-id', e.detail.referenceId)
+    })
+
+    setTimeout(() => {
+      const ref = localStorage.getItem('saved-reference-id')
+      if (ref) {
+        document.querySelector('#display').setAttribute('reference-id', ref)
+        document.querySelector('#action').setAttribute('reference-id', ref)
+      }
+    }, 1000)
+
+  </script>
 </body>
 
 </html>
