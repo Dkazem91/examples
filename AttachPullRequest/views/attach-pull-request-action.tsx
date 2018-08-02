@@ -3,7 +3,7 @@
 
 */
 
-import { Component, SaveStateIntent, BearerState, Prop } from '@bearer/core'
+import { Component, BearerState, Intent, IntentType } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({
@@ -12,7 +12,8 @@ import '@bearer/ui'
   shadow: true
 })
 export class AttachPullRequestAction {
-  @SaveStateIntent() fetcher: any
+  @Intent('SaveState', IntentType.SaveState)
+  fetcher: any
   @BearerState() attachedPullRequests: Array<any> = []
 
   attachPullRequest = ({ data, complete }): void => {

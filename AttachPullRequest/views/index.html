@@ -4,18 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>AttachPullRequest scenario</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
-    crossorigin="anonymous">
-  <style>
-    body {
-      padding: 50px;
-    }
-
-    hr {
-      margin: 20px 0;
-    }
-  </style>
+  <link href="https://cdn.rawgit.com/tabler/tabler/dev/dist/assets/css/tabler.css" rel="stylesheet" />
+  <title>Attach Pull Request</title>
   <script>
     window.BEARER_CONFIG = {
       integrationHost: 'https://int.staging.bearer.sh/'
@@ -25,39 +15,71 @@
 </head>
 
 <body>
-  <h1>Setup component</h1>
-  <attach-pull-request-setup>
-  </attach-pull-request-setup>
-  <attach-pull-request-setup-display>
-  </attach-pull-request-setup-display>
-  <hr />
-  <h1>Action component</h1>
+  <div class="page">
+    <div class="page-main">
+      <div class="header py-4">
+        <div class="container">
+          <div class="d-flex">
+            <a class="header-brand" href="#">
+              <img src="https://app.bearer.sh/static/media/logo.5b35e2ab.svg" class="header-brand-img" alt="Bearer Logo">
+            </a>
+            <div class="d-flex order-lg-2 ml-auto">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="my-3 my-md-5">
+        <div class="container">
+          <div class="page-header">
+            <h1 class="page-title">Setup component</h1>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <attach-pull-request-setup>
+              </attach-pull-request-setup>
+              <hr />
+              <attach-pull-request-setup-display>
+              </attach-pull-request-setup-display>
+            </div>
+          </div>
+          <div class="page-header">
+            <h1 class="page-title">Action component</h1>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <attach-pull-request id="action" setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9">
+              </attach-pull-request>
+            </div>
+          </div>
 
-  <attach-pull-request id="action" setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9">
-  </attach-pull-request>
-  <hr />
+          <div class="page-header">
+            <h1 class="page-title">Display component</h1>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <attach-pull-request-display id="display" setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9" reference-id="3b5a4830-9568-11e8-a6ed-e3c67ed35db4">
+              </attach-pull-request-display>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.querySelector('attach-pull-request').addEventListener('bearer:StateSaved', (e) => {
+        console.log('[BEARER]', 'StateSaved', e.detail)
+        document.querySelector('#display').setAttribute('reference-id', e.detail.referenceId)
+        localStorage.setItem('saved-reference-id', e.detail.referenceId)
+      })
 
-  <h1>Display component</h1>
+      setTimeout(() => {
+        const ref = localStorage.getItem('saved-reference-id')
+        if (ref) {
+          document.querySelector('#display').setAttribute('reference-id', ref)
+          document.querySelector('#action').setAttribute('reference-id', ref)
+        }
+      }, 1000)
 
-  <attach-pull-request-display id="display" setup-id="10841e90-89da-11e8-bcea-eb738c45d2c9">
-  </attach-pull-request-display>
-
-  <script>
-    document.querySelector('attach-pull-request').addEventListener('bearer:StateSaved', (e) => {
-      console.log('[BEARER]', 'StateSaved', e.detail)
-      document.querySelector('#display').setAttribute('reference-id', e.detail.referenceId)
-      localStorage.setItem('saved-reference-id', e.detail.referenceId)
-    })
-
-    setTimeout(() => {
-      const ref = localStorage.getItem('saved-reference-id')
-      if (ref) {
-        document.querySelector('#display').setAttribute('reference-id', ref)
-        document.querySelector('#action').setAttribute('reference-id', ref)
-      }
-    }, 1000)
-
-  </script>
+    </script>
 </body>
 
 </html>
