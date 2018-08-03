@@ -13,6 +13,6 @@
     "jsx": "react",
     "jsxFactory": "h"
   },
-  "include": ["views", "types/jsx.d.ts", ".build/views/src/components.d.ts"],
+  "include": ["views", "types/jsx.d.ts", ".bearer/views/src/components.d.ts"],
   "exclude": ["node_modules"]
 }
