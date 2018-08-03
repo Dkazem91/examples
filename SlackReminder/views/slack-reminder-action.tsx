@@ -11,6 +11,7 @@ import '@bearer/ui'
   shadow: true
 })
 export class SlackReminderAction {
+  @State() loading: boolean
   @SaveStateIntent() intent: BearerFetch
   @State() reminded: boolean = false
   @Prop() text: string
@@ -18,16 +19,23 @@ export class SlackReminderAction {
   @Prop() when?: string
   @Prop() who?: string
 
-  perform = ({ who, what, when }): Promise<any> =>
-    this.intent({
+  perform = ({ who, what, when }): Promise<any> => {
+    this.loading = true
+    return this.intent({
       body: {
         who,
         what,
         when
       }
-    }).then(() => {
-      this.reminded = true
     })
+      .then(() => {
+        this.reminded = true
+        this.loading = false
+      })
+      .catch(() => {
+        this.loading = false
+      })
+  }
 
   remindMe = (): Promise<any> =>
     this.perform({
@@ -49,14 +57,24 @@ export class SlackReminderAction {
       .then(() => complete())
       .catch(console.error)
 
+  get buttonText(): any {
+    return this.text || 'Remind me'
+  }
+
   render() {
     const multipleScreens = !this.who || !this.when || !this.what
     const btnProps: JSXElements.BearerButtonAttributes = {
       kind: this.reminded ? 'success' : 'primary',
-      content: this.text || 'Remind me'
+      content: this.buttonText,
+      disabled: this.loading || false
     }
     return !multipleScreens ? (
-      <bearer-button onClick={this.remindMe} {...btnProps} content={this.text} />
+      <bearer-authorized
+        renderAuthorized={() => <bearer-button onClick={this.remindMe} {...btnProps} content={this.text} />}
+        renderUnauthorized={({ authenticate }) => (
+          <bearer-button onClick={() => authenticate().then(() => this.remindMe())} {...btnProps} content={this.text} />
+        )}
+      />
     ) : (
       <bearer-navigator btnProps={btnProps} complete={this.complete}>
         <bearer-navigator-auth-screen />
