@@ -3,7 +3,7 @@
   Its responsibility is to retrieve the scenario state from a previous action
   of a user.
 */
-import { Component, BearerFetch, BearerState, State, Intent, IntentType, Watch, Prop } from '@bearer/core'
+import { Component, Prop } from '@bearer/core'
 import '@bearer/ui'
 
 @Component({

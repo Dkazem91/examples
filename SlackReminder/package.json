@@ -18,14 +18,13 @@
     "test.watch": "jest --watch --no-cache"
   },
   "dependencies": {
-    "@bearer/core": "0.27.1",
-    "@bearer/intents": "0.27.3",
-    "@bearer/ui": "0.27.1",
-    "axios": "^0.18.0",
-    "@stencil/core": "0.10.9"
+    "@bearer/core": "0.33.0",
+    "@bearer/intents": "0.32.0",
+    "@bearer/ui": "0.33.0",
+    "axios": "^0.18.0"
   },
   "devDependencies": {
-    "@bearer/bearer-cli": "0.27.4",
+    "@bearer/bearer-cli": "0.33.0",
     "@types/jest": "latest",
     "@types/node": "latest",
     "jest": "latest"
