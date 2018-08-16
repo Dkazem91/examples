@@ -1,0 +1,27 @@
+{
+  "authorizationURL": "https://accounts.google.com/o/oauth2/v2/auth",
+  "tokenURL": "https://www.googleapis.com/oauth2/v4/token",
+  "authType": "oauth2",
+  "tokenParams": {
+    "redirect_uri": "https://int.staging.bearer.sh/v1/auth/callback"
+  },
+  "authorizationParams": {
+    "redirect_uri": "https://int.staging.bearer.sh/v1/auth/callback"
+  },
+  "config": {
+    "scope": ["https://www.googleapis.com/auth/calendar.readonly", "https://www.googleapis.com/auth/calendar"],
+    "accessType": "offline"
+  },
+  "setupViews": [
+    {
+      "type": "text",
+      "label": "Client ID",
+      "controlName": "clientID"
+    },
+    {
+      "type": "password",
+      "label": "Client Secret",
+      "controlName": "clientSecret"
+    }
+  ]
+}
