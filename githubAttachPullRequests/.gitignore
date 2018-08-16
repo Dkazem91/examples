@@ -1,0 +1,6 @@
+.bearer
+node_modules/
+dist/
+www/
+.build/
+confg.dev.js
