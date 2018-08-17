@@ -1,3 +1,7 @@
-.root {
-  
+bearer-typography,
+input {
+  text-align: center;
+}
+.form-group {
+  width: 100%;
 }
