@@ -18,7 +18,7 @@ export class WhenSelector {
   @Prop()
   next: (when: string) => void
   @Prop()
-  dates: Array<{ text: string; value: string }> = defaults
+  dates?: Array<{ text: string; value: string }>
 
   goNext = when => this.next(when)
 
