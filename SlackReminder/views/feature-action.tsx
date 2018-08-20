@@ -26,7 +26,7 @@ export class FeatureAction {
   @Prop()
   who?: string
   @Prop()
-  dateChoices: string
+  dateChoices?: string
 
   perform = ({ who, what, when }): Promise<any> => {
     this.loading = true
@@ -61,6 +61,10 @@ export class FeatureAction {
     })
   }
 
+  componentDidLoad() {
+    console.log('[BEARER]', 'this', this)
+  }
+
   complete = ({ data, complete }) =>
     this.remindMeFromScreen(data)
       .then(() => complete())
@@ -72,7 +76,12 @@ export class FeatureAction {
 
   get dateChoicesData(): Array<{ value: string; text: string }> {
     if (this.dateChoices) {
-      return JSON.parse(this.dateChoices)
+      try {
+        return JSON.parse(this.dateChoices)
+      } catch (e) {
+        console.warn('Invalid JSON provided')
+        return null
+      }
     }
     return null
   }
