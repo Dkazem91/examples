@@ -2,7 +2,7 @@ import { RootComponent, Prop } from '@bearer/core'
 import '@bearer/ui'
 
 @RootComponent({
-  name: 'display',
+  role: 'display',
   group: 'feature'
 })
 export class FeatureDisplay {
