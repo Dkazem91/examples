@@ -4,3 +4,4 @@ dist/
 www/
 .build/
 confg.dev.js
+.scenariorc
